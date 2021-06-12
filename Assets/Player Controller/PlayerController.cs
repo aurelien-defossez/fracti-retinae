@@ -36,7 +36,7 @@ namespace FractiRetinae
 
 			// Movement
 			Vector2 movementDirection = controls.Player.Move.ReadValue<Vector2>();
-			transform.position = transform.position + new Vector3(movementDirection.x, 0, movementDirection.y) * walkSpeed * Time.deltaTime;
+			transform.position = transform.position + transform.localRotation * new Vector3(movementDirection.x, 0, movementDirection.y) * walkSpeed * Time.deltaTime;
 		}
 	}
 }
