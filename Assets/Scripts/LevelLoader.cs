@@ -16,7 +16,7 @@ namespace FractiRetinae
 		private Level[] levels;
 		private int levelIndex;
 
-		protected void Awake()
+		protected override void Awake()
 		{
 			levels = GetComponentsInChildren<Level>(includeInactive: true);
 		}
@@ -34,7 +34,7 @@ namespace FractiRetinae
 			}
 
 			levelIndex = index;
-			levels[levelIndex].gameObject.SetActive(true);
+			levels[levelIndex].Load();
 			PlayerController.Instance.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
 		}
 

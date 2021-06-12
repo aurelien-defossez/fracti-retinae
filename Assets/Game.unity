@@ -170,8 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f444f9b9587297149922cd88ed042e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLevel: 4
-  playerController: {fileID: 5241267463883992189}
+  startLevel: 1
 --- !u!1 &111100115
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,8 +872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hotkeysEnabled: 1
-  controller: {fileID: 5241267463883992189}
-  levelLoader: {fileID: 72535286}
 --- !u!4 &1645239837
 Transform:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ namespace FractiRetinae
 
 		private Camera firstCamera;
 
-		protected void Awake()
+		protected override void Awake()
 		{
 			CharacterController = GetComponent<CharacterController>();
 			Rigidbody = GetComponent<Rigidbody>();
