@@ -37,7 +37,7 @@ namespace FractiRetinae
 			Debug.Log($"Load level #{index + 1}");
 
 			levelIndex = index;
-			levels[levelIndex].Load(maximalGlyphDistance);
+			CurrentLevel.Load(maximalGlyphDistance);
 			PlayerController.Instance.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
 		}
 
