@@ -758,6 +758,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Cheater",
+            "id": "4bdac309-7e9d-44df-b3c8-18171ddc4fcf",
+            "actions": [
+                {
+                    "name": "NextLevel",
+                    "type": "Button",
+                    "id": "9004bcc4-2825-4056-8609-67937d431dff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "57e8d369-218b-41a5-b17c-f819b5fc4a48",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Game",
+                    "action": "NextLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

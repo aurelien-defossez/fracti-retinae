@@ -771,6 +771,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Cheater"",
+            ""id"": ""4bdac309-7e9d-44df-b3c8-18171ddc4fcf"",
+            ""actions"": [
+                {
+                    ""name"": ""NextLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""9004bcc4-2825-4056-8609-67937d431dff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""57e8d369-218b-41a5-b17c-f819b5fc4a48"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Game"",
+                    ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -798,6 +825,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Cheater
+        m_Cheater = asset.FindActionMap("Cheater", throwIfNotFound: true);
+        m_Cheater_NextLevel = m_Cheater.FindAction("NextLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -997,6 +1027,39 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Cheater
+    private readonly InputActionMap m_Cheater;
+    private ICheaterActions m_CheaterActionsCallbackInterface;
+    private readonly InputAction m_Cheater_NextLevel;
+    public struct CheaterActions
+    {
+        private @PlayerControls m_Wrapper;
+        public CheaterActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @NextLevel => m_Wrapper.m_Cheater_NextLevel;
+        public InputActionMap Get() { return m_Wrapper.m_Cheater; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CheaterActions set) { return set.Get(); }
+        public void SetCallbacks(ICheaterActions instance)
+        {
+            if (m_Wrapper.m_CheaterActionsCallbackInterface != null)
+            {
+                @NextLevel.started -= m_Wrapper.m_CheaterActionsCallbackInterface.OnNextLevel;
+                @NextLevel.performed -= m_Wrapper.m_CheaterActionsCallbackInterface.OnNextLevel;
+                @NextLevel.canceled -= m_Wrapper.m_CheaterActionsCallbackInterface.OnNextLevel;
+            }
+            m_Wrapper.m_CheaterActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @NextLevel.started += instance.OnNextLevel;
+                @NextLevel.performed += instance.OnNextLevel;
+                @NextLevel.canceled += instance.OnNextLevel;
+            }
+        }
+    }
+    public CheaterActions @Cheater => new CheaterActions(this);
     private int m_GameSchemeIndex = -1;
     public InputControlScheme GameScheme
     {
@@ -1024,5 +1087,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface ICheaterActions
+    {
+        void OnNextLevel(InputAction.CallbackContext context);
     }
 }

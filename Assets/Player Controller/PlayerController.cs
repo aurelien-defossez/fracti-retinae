@@ -13,11 +13,11 @@ namespace FractiRetinae
 		[SerializeField, Min(0)] private float xSensitivity = 1;
 		[SerializeField, Min(0)] private float ySensitivity = 1;
 
-		private PlayerControls controls;
+		public PlayerControls Controls { get; private set; }
 
 		protected void Awake()
 		{
-			controls = new PlayerControls();
+			Controls = new PlayerControls();
 		}
 
 		protected void Start()
@@ -25,17 +25,17 @@ namespace FractiRetinae
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 
-			controls.Player.Enable();
+			Controls.Player.Enable();
 		}
 
 		protected void Update()
 		{
 			// Look
-			Vector2 lookDirection = controls.Player.Look.ReadValue<Vector2>();
+			Vector2 lookDirection = Controls.Player.Look.ReadValue<Vector2>();
 			transform.Rotate(Vector3.up, lookDirection.x * xSensitivity * Time.deltaTime);
 
 			// Movement
-			Vector2 movementDirection = controls.Player.Move.ReadValue<Vector2>();
+			Vector2 movementDirection = Controls.Player.Move.ReadValue<Vector2>();
 			transform.position = transform.position + transform.localRotation * new Vector3(movementDirection.x, 0, movementDirection.y) * walkSpeed * Time.deltaTime;
 		}
 	}
