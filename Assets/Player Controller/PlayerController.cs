@@ -12,6 +12,7 @@ namespace FractiRetinae
 		[SerializeField, Min(0)] private float walkSpeed = 1;
 		[SerializeField, Min(0)] private float xSensitivity = 1;
 		[SerializeField, Min(0)] private float ySensitivity = 1;
+		[SerializeField, Min(0)] private float lookSpeedCap = 10;
 		[SerializeField, Min(0)] private float interactDistance = 1;
 		[SerializeField] private Transform cameraContainer;
 
@@ -46,7 +47,7 @@ namespace FractiRetinae
 		protected void Update()
 		{
 			// Read input
-			Vector2 lookDirection = Controls.Player.Look.ReadValue<Vector2>();
+			Vector2 lookDirection = Controls.Player.Look.ReadValue<Vector2>().CapMagnitude(lookSpeedCap);
 			Vector2 movementDirection = Controls.Player.Move.ReadValue<Vector2>();
 
 			// Look Horizontal
