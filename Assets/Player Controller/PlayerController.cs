@@ -13,19 +13,23 @@ namespace FractiRetinae
 		[SerializeField, Min(0)] private float xSensitivity = 1;
 		[SerializeField, Min(0)] private float ySensitivity = 1;
 		[SerializeField, Min(0)] private float interactDistance = 1;
-		[SerializeField] private Transform cameras;
+		[SerializeField] private Transform cameraContainer;
 
 		public PlayerControls Controls { get; private set; }
 		public CharacterController CharacterController { get; private set; }
 		public Rigidbody Rigidbody { get; private set; }
 
-		private Camera firstCamera;
+		public Vector3 HeadPosition => cameraContainer.transform.position;
+		public Vector3 LookDirection => cameras.First().transform.rotation * Vector3.forward;
+		public Ray LookRay => new Ray(HeadPosition, LookDirection);
+
+		private Camera[] cameras;
 
 		protected override void Awake()
 		{
 			CharacterController = GetComponent<CharacterController>();
 			Rigidbody = GetComponent<Rigidbody>();
-			firstCamera = cameras.GetComponentInChildren<Camera>();
+			cameras = GetComponentsInChildren<Camera>();
 			Controls = new PlayerControls();
 
 			Controls.Player.Interact.performed += OnInteract;
@@ -49,8 +53,8 @@ namespace FractiRetinae
 			transform.Rotate(Vector3.up, lookDirection.x * xSensitivity * Time.deltaTime);
 
 			// Look Vertical
-			float verticalRotation = cameras.eulerAngles.x - lookDirection.y * ySensitivity * Time.deltaTime;
-			cameras.eulerAngles = cameras.eulerAngles.WithX(verticalRotation);
+			float verticalRotation = cameraContainer.eulerAngles.x - lookDirection.y * ySensitivity * Time.deltaTime;
+			cameraContainer.eulerAngles = cameraContainer.eulerAngles.WithX(verticalRotation);
 
 			// Movement
 			CharacterController.Move(transform.localRotation * new Vector3(movementDirection.x, Physics.gravity.y, movementDirection.y)
@@ -67,11 +71,12 @@ namespace FractiRetinae
 			CharacterController.enabled = true;
 		}
 
+		public Camera GetCameraFromLayer(int layer) => cameras[Convert.ToInt32(LayerMask.LayerToName(layer).Last().ToString()) - 1];
+
 		private void OnInteract(InputAction.CallbackContext obj)
 		{
-			Debug.Log($"Raycast from {cameras.transform.position.ToString(4)} toward {firstCamera.transform.rotation * Vector3.forward}");
-			Ray ray = new Ray(cameras.transform.position, firstCamera.transform.rotation * Vector3.forward);
-			if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
+			Debug.Log($"Raycast from {HeadPosition.ToString(4)} toward {LookDirection}");
+			if (Physics.Raycast(LookRay, out RaycastHit hit, interactDistance))
 			{
 				Debug.Log($"Raycast hit {hit.collider.gameObject.name}");
 				Switch interactableSwitch = hit.collider.GetComponent<Switch>();

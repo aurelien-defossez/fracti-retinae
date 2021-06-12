@@ -7,15 +7,16 @@ using UnityEngine.InputSystem;
 
 namespace FractiRetinae
 {
-	public class Cheater : MonoBehaviour
+	public class Cheater : MonoBehaviourSingleton<Cheater>
 	{
-		[SerializeField] private bool hotkeysEnabled;
+		[SerializeField] public bool HotkeysEnabled;
+		[SerializeField] public bool EnableGlyphsOnLevelLoad;
 
 		protected void Start()
 		{
 			PlayerController.Instance.Controls.Cheater.NextLevel.performed += LoadNextLevel;
 
-			if (hotkeysEnabled)
+			if (HotkeysEnabled)
 			{
 				PlayerController.Instance.Controls.Cheater.Enable();
 			}

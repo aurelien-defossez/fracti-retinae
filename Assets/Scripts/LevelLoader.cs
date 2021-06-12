@@ -10,6 +10,7 @@ namespace FractiRetinae
 	public class LevelLoader : MonoBehaviourSingleton<LevelLoader>
 	{
 		[SerializeField, Min(1)] private int startLevel = 1;
+		[SerializeField, Range(0, 1)] private float maximalGlyphDistance;
 
 		public Level CurrentLevel => levels[levelIndex];
 
@@ -33,8 +34,10 @@ namespace FractiRetinae
 				level.gameObject.SetActive(false);
 			}
 
+			Debug.Log($"Load level #{index + 1}");
+
 			levelIndex = index;
-			levels[levelIndex].Load();
+			levels[levelIndex].Load(maximalGlyphDistance);
 			PlayerController.Instance.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
 		}
 

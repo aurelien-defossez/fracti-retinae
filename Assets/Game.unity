@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLevel: 1
+  maximalGlyphDistance: 0.25
 --- !u!1 &111100115
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a5021e7416c0444ae13924eae317c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotkeysEnabled: 1
+  HotkeysEnabled: 1
+  EnableGlyphsOnLevelLoad: 0
 --- !u!4 &1645239837
 Transform:
   m_ObjectHideFlags: 0
@@ -1225,6 +1227,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1400303064105158313, guid: fc078c842389b1a4da6c091468557201, type: 3}
+      propertyPath: m_Name
+      value: Collider Left
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc078c842389b1a4da6c091468557201, type: 3}
 --- !u!4 &2200022537210990493 stripped
@@ -1374,7 +1380,7 @@ MonoBehaviour:
   xSensitivity: 20
   ySensitivity: 10
   interactDistance: 6
-  cameras: {fileID: 111100116}
+  cameraContainer: {fileID: 111100116}
 --- !u!143 &5241267463883992190
 CharacterController:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace FractiRetinae
 {
-	public class Level: MonoBehaviour
+	public class Level : MonoBehaviour
 	{
 		[SerializeField, Range(1, 9)] private int cameraCount = 2;
 		[SerializeField] private Transform startPosition;
@@ -15,24 +15,54 @@ namespace FractiRetinae
 		public Transform Start => startPosition;
 
 		private Glyph[] glyphs;
+		private float maximalGlyphDistance;
 
 		protected void Awake()
 		{
 			glyphs = GetComponentsInChildren<Glyph>(includeInactive: true);
 		}
 
-		public void Load()
+		public void Load(float maximalGlyphDistance)
 		{
+			this.maximalGlyphDistance = maximalGlyphDistance;
 			gameObject.SetActive(true);
-			EnableGlyphs(false);
+			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLevelLoad);
 			ScreenLayout.Instance.Setup(cameraCount);
 		}
 
 		public void EnableGlyphs(bool enabled)
 		{
-			foreach(Glyph glyph in glyphs)
+			foreach (Glyph glyph in glyphs)
 			{
 				glyph.gameObject.SetActive(enabled);
+			}
+
+			if (enabled)
+			{
+				if (glyphs.Length == 0)
+				{
+					Debug.LogError($"There are no glyphs in this level, can't be finished.");
+				}
+				else
+				{
+					StartCoroutine(CheckGlyphDistance());
+				}
+			}
+		}
+
+		private IEnumerator CheckGlyphDistance()
+		{
+			while (gameObject.activeSelf)
+			{
+				if (glyphs.All(g => g.CenterDistance <= maximalGlyphDistance))
+				{
+					LevelLoader.Instance.LoadNextLevel();
+					break;
+				}
+				else
+				{
+					yield return 0;
+				}
 			}
 		}
 	}
