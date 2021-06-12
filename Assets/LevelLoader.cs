@@ -9,7 +9,7 @@ namespace FractiRetinae
 {
 	public class LevelLoader : MonoBehaviour
 	{
-		[SerializeField, Range(1, 3)] private int startLevel = 1;
+		[SerializeField, Min(1)] private int startLevel = 1;
 
 		[SerializeField] private PlayerController playerController;
 
