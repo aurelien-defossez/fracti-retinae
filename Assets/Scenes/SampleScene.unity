@@ -1369,7 +1369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 10
   xSensitivity: 10
-  ySensitivity: 1
+  ySensitivity: 10
+  cameras: {fileID: 111100116}
 --- !u!1 &5241892580599459798
 GameObject:
   m_ObjectHideFlags: 0
