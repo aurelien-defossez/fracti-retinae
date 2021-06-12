@@ -12,6 +12,7 @@ namespace FractiRetinae
 		[SerializeField, Min(1)] private int startLevel = 1;
 		[SerializeField, Range(0, 1)] private float maximalGlyphDistance;
 
+		public float MaximalGlyphDistance => maximalGlyphDistance;
 		public Level CurrentLevel => levels[levelIndex];
 
 		private Level[] levels;
@@ -37,7 +38,7 @@ namespace FractiRetinae
 			Debug.Log($"Load level #{index + 1}");
 
 			levelIndex = index;
-			CurrentLevel.Load(maximalGlyphDistance);
+			CurrentLevel.Load();
 			PlayerController.Instance.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
 		}
 
