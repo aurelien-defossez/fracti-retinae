@@ -12,6 +12,6 @@ namespace FractiRetinae
 		[SerializeField, Range(1, 9)] private int cameraCount = 2;
 		[SerializeField] private Transform startPosition;
 
-		public Vector3 StartPosition => startPosition.position;
+		public Transform Start => startPosition;
 	}
 }

@@ -59,10 +59,11 @@ namespace FractiRetinae
 			);
 		}
 
-		public void TeleportPlayer(Vector3 position)
+		public void TeleportPlayer(Vector3 position, Quaternion rotation)
 		{
 			CharacterController.enabled = false;
 			transform.position = position;
+			transform.rotation = rotation;
 			CharacterController.enabled = true;
 		}
 
