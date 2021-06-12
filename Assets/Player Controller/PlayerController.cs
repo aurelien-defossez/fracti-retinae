@@ -52,7 +52,7 @@ namespace FractiRetinae
 
 			// Movement
 			characterController.Move(transform.localRotation * new Vector3(movementDirection.x, Physics.gravity.y, movementDirection.y)
-				* xSensitivity
+				* walkSpeed
 				* Time.deltaTime
 			);
 		}

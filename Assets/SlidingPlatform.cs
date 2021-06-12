@@ -11,6 +11,7 @@ namespace FractiRetinae
 		[SerializeField] private Vector3 translation;
 		[SerializeField] private Vector3 rotation;
 		[SerializeField] private EaseDefinition animationEase;
+		[SerializeField] private bool startMoved;
 
 		public bool IsMoved { get; private set; }
 
@@ -22,6 +23,14 @@ namespace FractiRetinae
 		{
 			initialPosition = transform.localPosition;
 			initialRotation = transform.localRotation;
+		}
+
+		protected void Start()
+		{
+			if (startMoved)
+			{
+				SlideToTargetPosition();
+			}
 		}
 
 		public void Switch()
