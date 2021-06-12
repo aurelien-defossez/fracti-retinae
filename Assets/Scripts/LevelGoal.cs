@@ -8,9 +8,9 @@ namespace FractiRetinae
 {
 	public class LevelGoal : MonoBehaviour
 	{
-		protected void OnCollisionEnter(Collision collision)
+		protected void OnTriggerEnter(Collider collider)
 		{
-			if (collision.collider.CompareTag("Player"))
+			if (collider.CompareTag("Player"))
 			{
 				GetComponentInParent<Level>().EnableGlyphs(true);
 			}
