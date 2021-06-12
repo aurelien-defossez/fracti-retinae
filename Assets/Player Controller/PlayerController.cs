@@ -16,9 +16,12 @@ namespace FractiRetinae
 
 		public PlayerControls Controls { get; private set; }
 
+		private CharacterController characterController;
+
 		protected void Awake()
 		{
 			Controls = new PlayerControls();
+			characterController = GetComponent<CharacterController>();
 		}
 
 		protected void Start()
@@ -43,7 +46,10 @@ namespace FractiRetinae
 			cameras.eulerAngles = cameras.eulerAngles.WithX(verticalRotation);
 
 			// Movement
-			transform.position = transform.position + transform.localRotation * new Vector3(movementDirection.x, 0, movementDirection.y) * walkSpeed * Time.deltaTime;
+			characterController.Move(transform.localRotation * new Vector3(movementDirection.x, Physics.gravity.y, movementDirection.y)
+				* xSensitivity
+				* Time.deltaTime
+			);
 		}
 	}
 }
