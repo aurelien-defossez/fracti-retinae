@@ -16,13 +16,15 @@ namespace FractiRetinae
 		[SerializeField] private Transform cameras;
 
 		public PlayerControls Controls { get; private set; }
+		public CharacterController CharacterController { get; private set; }
+		public Rigidbody Rigidbody { get; private set; }
 
-		private CharacterController characterController;
 		private Camera firstCamera;
 
 		protected void Awake()
 		{
-			characterController = GetComponent<CharacterController>();
+			CharacterController = GetComponent<CharacterController>();
+			Rigidbody = GetComponent<Rigidbody>();
 			firstCamera = cameras.GetComponentInChildren<Camera>();
 			Controls = new PlayerControls();
 
@@ -51,10 +53,17 @@ namespace FractiRetinae
 			cameras.eulerAngles = cameras.eulerAngles.WithX(verticalRotation);
 
 			// Movement
-			characterController.Move(transform.localRotation * new Vector3(movementDirection.x, Physics.gravity.y, movementDirection.y)
+			CharacterController.Move(transform.localRotation * new Vector3(movementDirection.x, Physics.gravity.y, movementDirection.y)
 				* walkSpeed
 				* Time.deltaTime
 			);
+		}
+
+		public void TeleportPlayer(Vector3 position)
+		{
+			CharacterController.enabled = false;
+			transform.position = position;
+			CharacterController.enabled = true;
 		}
 
 		private void OnInteract(InputAction.CallbackContext obj)

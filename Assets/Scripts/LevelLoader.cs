@@ -37,7 +37,7 @@ namespace FractiRetinae
 
 			levelIndex = index;
 			levels[levelIndex].gameObject.SetActive(true);
-			playerController.transform.position = CurrentLevel.StartPosition;
+			playerController.TeleportPlayer(CurrentLevel.StartPosition);
 		}
 
 		public void LoadNextLevel() => LoadLevel(levelIndex < levels.Length - 1 ? levelIndex + 1 : 0);
