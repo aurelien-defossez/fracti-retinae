@@ -10,16 +10,22 @@ namespace FractiRetinae
 	{
 		private static readonly Vector2 SCREEN_CENTER = new Vector2(0.5f, 0.5f);
 
+		[SerializeField] private float glowStartDistance;
 		[SerializeField] private bool traceGlyphVisibility;
 
 		public bool IsVisible { get; private set; } = false;
 		public float CenterDistance { get; private set; } = float.PositiveInfinity;
 
 		private Camera viewCamera;
+		private Material mat;
+		private Color fullColor;
 
 		protected void OnEnable()
 		{
 			viewCamera = PlayerController.Instance.GetCameraFromLayer(gameObject.layer);
+			mat = GetComponentInChildren<MeshRenderer>().material;
+			fullColor = mat.color;
+			UpdateGlyph();
 		}
 
 		public void Update()
@@ -46,6 +52,13 @@ namespace FractiRetinae
 					Debug.Log($"Glyph on camera {viewCamera.name} is obstructed by {hit.collider.name}");
 				}
 			}
+
+			UpdateGlyph();
+		}
+
+		public void UpdateGlyph()
+		{
+			mat.color = Color.Lerp(fullColor, Color.white, Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance));
 		}
 	}
 }

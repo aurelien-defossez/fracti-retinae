@@ -15,16 +15,14 @@ namespace FractiRetinae
 		public Transform Start => startPosition;
 
 		private Glyph[] glyphs;
-		private float maximalGlyphDistance;
 
 		protected void Awake()
 		{
 			glyphs = GetComponentsInChildren<Glyph>(includeInactive: true);
 		}
 
-		public void Load(float maximalGlyphDistance)
+		public void Load()
 		{
-			this.maximalGlyphDistance = maximalGlyphDistance;
 			gameObject.SetActive(true);
 			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLevelLoad);
 			ScreenLayout.Instance.Setup(cameraCount);
@@ -54,7 +52,7 @@ namespace FractiRetinae
 		{
 			while (gameObject.activeSelf)
 			{
-				if (glyphs.All(g => g.CenterDistance <= maximalGlyphDistance))
+				if (glyphs.All(g => g.CenterDistance <= LevelLoader.Instance.MaximalGlyphDistance))
 				{
 					LevelLoader.Instance.LoadNextLevel();
 					break;
