@@ -13,6 +13,8 @@ namespace FractiRetinae
 		[SerializeField, Min(0)] private float xSensitivity = 1;
 		[SerializeField, Min(0)] private float ySensitivity = 1;
 		[SerializeField, Min(0)] private float lookSpeedCap = 10;
+		[SerializeField, Range(0, 90)] private float lookDownCap = 90;
+		[SerializeField, Range(0, 90)] private float lookUpCap = 90;
 		[SerializeField, Min(0)] private float interactDistance = 1;
 		[SerializeField] private Transform cameraContainer;
 
@@ -35,7 +37,7 @@ namespace FractiRetinae
 
 			Controls.Player.Interact.performed += OnInteract;
 		}
-
+		 
 		protected void Start()
 		{
 			Cursor.lockState = CursorLockMode.Locked;
@@ -55,6 +57,9 @@ namespace FractiRetinae
 
 			// Look Vertical
 			float verticalRotation = cameraContainer.eulerAngles.x - lookDirection.y * ySensitivity * Time.deltaTime;
+			verticalRotation = (verticalRotation + 360) % 360;
+			verticalRotation = verticalRotation < 180 ? verticalRotation : verticalRotation - 360;
+			verticalRotation = Mathf.Clamp(verticalRotation, -lookUpCap, lookDownCap);
 			cameraContainer.eulerAngles = cameraContainer.eulerAngles.WithX(verticalRotation);
 
 			// Movement
