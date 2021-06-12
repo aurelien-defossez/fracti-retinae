@@ -9,6 +9,8 @@ namespace FractiRetinae
 {
 	public class LevelLoader : MonoBehaviour
 	{
+		[SerializeField, Range(1, 3)] private int startLevel = 1;
+
 		[SerializeField] private PlayerController playerController;
 
 		public Level CurrentLevel => levels[levelIndex];
@@ -23,7 +25,7 @@ namespace FractiRetinae
 
 		protected void Start()
 		{
-			LoadLevel(0);
+			LoadLevel(startLevel - 1);
 		}
 
 		public void LoadLevel(int index)
