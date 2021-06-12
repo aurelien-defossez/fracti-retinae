@@ -37,7 +37,6 @@ namespace FractiRetinae
 		private IEnumerator Rotate()
 		{
 			float to = isLeft ? activationRotation : -activationRotation;
-			Debug.Log($"Rotate {name} to {to}, isLeft={isLeft}");
 			isLeft = !isLeft;
 
 			yield return lever.transform.RotateTo(Quaternion.Euler(0, 0, to), animationEase);
