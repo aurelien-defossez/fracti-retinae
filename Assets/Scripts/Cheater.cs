@@ -10,23 +10,21 @@ namespace FractiRetinae
 	public class Cheater : MonoBehaviour
 	{
 		[SerializeField] private bool hotkeysEnabled;
-		[SerializeField] private PlayerController controller;
-		[SerializeField] private LevelLoader levelLoader;
 
 		protected void Start()
 		{
-			controller.Controls.Cheater.NextLevel.performed += LoadNextLevel;
+			PlayerController.Instance.Controls.Cheater.NextLevel.performed += LoadNextLevel;
 
 			if (hotkeysEnabled)
 			{
-				controller.Controls.Cheater.Enable();
+				PlayerController.Instance.Controls.Cheater.Enable();
 			}
 			else
 			{
-				controller.Controls.Cheater.Disable();
+				PlayerController.Instance.Controls.Cheater.Disable();
 			}
 		}
 
-		private void LoadNextLevel(InputAction.CallbackContext obj) => levelLoader.LoadNextLevel();
+		private void LoadNextLevel(InputAction.CallbackContext obj) => LevelLoader.Instance.LoadNextLevel();
 	}
 }

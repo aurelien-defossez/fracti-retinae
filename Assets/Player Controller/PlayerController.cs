@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace FractiRetinae
 {
-	public class PlayerController : MonoBehaviour
+	public class PlayerController : MonoBehaviourSingleton<PlayerController>
 	{
 		[SerializeField, Min(0)] private float walkSpeed = 1;
 		[SerializeField, Min(0)] private float xSensitivity = 1;

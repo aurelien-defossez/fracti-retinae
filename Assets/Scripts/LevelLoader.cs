@@ -7,11 +7,9 @@ using UnityEngine.InputSystem;
 
 namespace FractiRetinae
 {
-	public class LevelLoader : MonoBehaviour
+	public class LevelLoader : MonoBehaviourSingleton<LevelLoader>
 	{
 		[SerializeField, Min(1)] private int startLevel = 1;
-
-		[SerializeField] private PlayerController playerController;
 
 		public Level CurrentLevel => levels[levelIndex];
 
@@ -37,7 +35,7 @@ namespace FractiRetinae
 
 			levelIndex = index;
 			levels[levelIndex].gameObject.SetActive(true);
-			playerController.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
+			PlayerController.Instance.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
 		}
 
 		public void LoadNextLevel() => LoadLevel(levelIndex < levels.Length - 1 ? levelIndex + 1 : 0);
