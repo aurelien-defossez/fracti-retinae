@@ -73,8 +73,13 @@ namespace FractiRetinae
 
 		public Camera GetCameraFromLayer(int layer) => cameras[Convert.ToInt32(LayerMask.LayerToName(layer).Last().ToString()) - 1];
 
-		private void OnInteract(InputAction.CallbackContext obj)
+		private void OnInteract(InputAction.CallbackContext obj) => StartCoroutine(InteractCore());
+
+		private IEnumerator InteractCore()
 		{
+			// Synchronize on the update loop for reasons
+			yield return 0;
+
 			Debug.Log($"Raycast from {HeadPosition.ToString(4)} toward {LookDirection}");
 			if (Physics.Raycast(LookRay, out RaycastHit hit, interactDistance))
 			{
