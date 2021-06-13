@@ -58,9 +58,9 @@ namespace FractiRetinae
 			{
 				if (hit.collider.gameObject == gameObject)
 				{
-					IsVisible = true;
 					CenterDistance = 2 * Mathf.Abs(viewCamera.WorldToViewportPoint(transform.position).x - 0.5f);
 					NormalDifference = 180 - Vector3.Angle(hit.normal, PlayerController.Instance.LookDirection);
+					IsVisible = NormalDifference < 90;
 
 					if (traceGlyphVisibility)
 					{
@@ -78,8 +78,7 @@ namespace FractiRetinae
 
 		public void UpdateGlyph()
 		{
-			float relativeDistance = 1 - Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance);
-
+			float relativeDistance = !IsVisible ? 0 : 1 - Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance);
 			decal.color = Color.Lerp(weakColor, fullColor, relativeDistance);
 
 			resonanceSound.volume = Mathf.Clamp(relativeDistance,
