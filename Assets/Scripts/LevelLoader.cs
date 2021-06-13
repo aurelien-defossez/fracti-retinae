@@ -10,8 +10,10 @@ namespace FractiRetinae
 	public class LevelLoader : MonoBehaviourSingleton<LevelLoader>
 	{
 		[SerializeField, Range(0, 1)] private float maximalGlyphDistance;
+		[SerializeField, Range(0, 90)] private float maximalGlyphNormalDifference;
 
 		public float MaximalGlyphDistance => maximalGlyphDistance;
+		public float MaximalGlyphNormalDifference => maximalGlyphNormalDifference;
 		public Level CurrentLevel => levels[levelIndex];
 
 		private Level[] levels;

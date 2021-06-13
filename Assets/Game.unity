@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximalGlyphDistance: 0.1
+  maximalGlyphNormalDifference: 15
 --- !u!1 &111100115
 GameObject:
   m_ObjectHideFlags: 0

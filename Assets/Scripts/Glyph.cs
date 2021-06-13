@@ -23,6 +23,7 @@ namespace FractiRetinae
 
 		public bool IsVisible { get; private set; } = false;
 		public float CenterDistance { get; private set; } = float.PositiveInfinity;
+		public float NormalDifference { get; private set; } = 0;
 
 		private int cameraId;
 		private Camera viewCamera;
@@ -59,10 +60,11 @@ namespace FractiRetinae
 				{
 					IsVisible = true;
 					CenterDistance = 2 * Vector2.Distance(SCREEN_CENTER, viewCamera.WorldToViewportPoint(transform.position));
+					NormalDifference = 180 - Vector3.Angle(hit.normal, ray.direction);
 
 					if (traceGlyphVisibility)
 					{
-						Debug.Log($"Glyph on camera {viewCamera.name} at distance {CenterDistance}");
+						Debug.Log($"Glyph on camera {viewCamera.name} at distance {CenterDistance} with a normal angle difference of {NormalDifference}");
 					}
 				}
 				else if (traceGlyphVisibility)
