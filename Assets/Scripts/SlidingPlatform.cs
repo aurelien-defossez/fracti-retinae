@@ -12,6 +12,7 @@ namespace FractiRetinae
 		[SerializeField] private Vector3 rotation;
 		[SerializeField] private EaseDefinition animationEase;
 		[SerializeField] private bool startMoved;
+		[SerializeField] private AudioSource switchSound;
 
 		public bool IsMoved { get; private set; }
 
@@ -42,6 +43,11 @@ namespace FractiRetinae
 			else
 			{
 				SlideToTargetPosition();
+			}
+
+			if (switchSound != null)
+			{
+				switchSound.Play();
 			}
 		}
 
