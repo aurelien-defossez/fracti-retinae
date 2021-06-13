@@ -29,7 +29,12 @@ namespace FractiRetinae
 			ScreenLayout.Instance.Setup(cameraCount);
 		}
 
-		public void EnableGlyphs(bool enabled)
+		public void OnGoalFound()
+		{
+			EnableGlyphs(true);
+		}
+
+		private void EnableGlyphs(bool enabled)
 		{
 			foreach (Glyph glyph in glyphs)
 			{
@@ -46,12 +51,6 @@ namespace FractiRetinae
 				{
 					StartCoroutine(CheckGlyphDistance());
 				}
-
-				MusicManager.Instance.OnGoalFound();
-			}
-			else
-			{
-				MusicManager.Instance.OnLevelStart();
 			}
 		}
 

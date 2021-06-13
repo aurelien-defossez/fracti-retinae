@@ -12,7 +12,7 @@ namespace FractiRetinae
 		{
 			if (collider.CompareTag("Player"))
 			{
-				GetComponentInParent<Level>().EnableGlyphs(true);
+				LevelLoader.Instance.CurrentLevel.OnGoalFound();
 			}
 		}
 	}
