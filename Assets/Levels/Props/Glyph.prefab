@@ -28,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6016381692327307012}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.053, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 0.25}
+  m_LocalScale: {x: 0.25, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6016381692327307012}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3bb8af931efb8c64297b2d92c883bde6, type: 2}
+  - {fileID: 2100000, guid: 763b906b26fabc54b8e48e095142adc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,10 +115,14 @@ MonoBehaviour:
   resonanceSound: {fileID: 5883303779243702462}
   minPitch: 0.8
   maxPitch: 1.2
-  minVolume: 0
-  maxVolume: 1
   volumeFadeSpeed: 1
-  fullColor: {r: 1, g: 0, b: 0, a: 1}
+  weakColor: {r: 1, g: 1, b: 1, a: 0.2509804}
+  fullColor: {r: 0.9984272, g: 1, b: 0.6839622, a: 1}
+  decals:
+  - {fileID: 2100000, guid: 763b906b26fabc54b8e48e095142adc5, type: 2}
+  - {fileID: 2100000, guid: 0207629c51a6873409d090d22b0515bf, type: 2}
+  - {fileID: 2100000, guid: 146467f53419fec44a569c93f96c983b, type: 2}
+  - {fileID: 2100000, guid: 468da48e78578354c95be23d3c275873, type: 2}
 --- !u!82 &5883303779243702462
 AudioSource:
   m_ObjectHideFlags: 0

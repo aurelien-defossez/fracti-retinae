@@ -16,22 +16,28 @@ namespace FractiRetinae
 		[SerializeField, Range(0, 2)] private float minPitch = 1;
 		[SerializeField, Range(0, 2)] private float maxPitch = 1;
 		[SerializeField, Range(0, 10)] private float volumeFadeSpeed = 1;
+		[SerializeField] private Color weakColor;
 		[SerializeField] private Color fullColor;
+		[SerializeField] private Material[] decals;
 
 		public bool IsVisible { get; private set; } = false;
 		public float CenterDistance { get; private set; } = float.PositiveInfinity;
 
 		private int cameraId;
 		private Camera viewCamera;
-		private Material mat;
+		private Material decal;
 
 		protected void OnEnable()
 		{
 			cameraId = PlayerController.Instance.GetCameraIndexFromLayer(gameObject.layer);
 			viewCamera = PlayerController.Instance.Cameras[cameraId - 1];
-			mat = GetComponentInChildren<MeshRenderer>().material;
+
+			decal = decals[cameraId - 1];
+			GetComponentInChildren<MeshRenderer>().material = decal;
+
 			resonanceSound.volume = 0;
 			resonanceSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(1, LevelLoader.Instance.CurrentLevel.CameraCount, cameraId));
+
 			UpdateGlyph();
 		}
 
@@ -66,7 +72,7 @@ namespace FractiRetinae
 		public void UpdateGlyph()
 		{
 			float relativeDistance = 1 - Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance);
-			mat.color = Color.Lerp(Color.white, fullColor, relativeDistance);
+			decal.color = Color.Lerp(weakColor, fullColor, relativeDistance);
 
 			resonanceSound.volume = Mathf.Clamp(relativeDistance,
 				resonanceSound.volume - volumeFadeSpeed * Time.deltaTime,
