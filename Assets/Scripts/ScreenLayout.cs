@@ -12,6 +12,7 @@ namespace FractiRetinae
 		[SerializeField] private EaseDefinition shatterEase;
 		[SerializeField] private CameraShake cameraShake;
 		[SerializeField] private string shatterText;
+		[SerializeField] private AudioSource shatterSound;
 
 		private float xLeft, xRight, yTop, yBottom;
 
@@ -56,8 +57,8 @@ namespace FractiRetinae
 			screens[1].gameObject.SetActive(true);
 
 			cameraShake.MinTrauma = 1;
-
 			TextPrinter.Instance.PrintText(shatterText);
+			shatterSound.Play();
 
 			// Move apart
 			yield return Auto.Interpolate(0, xRight, shatterEase, x =>
@@ -67,7 +68,6 @@ namespace FractiRetinae
 			});
 
 			TextPrinter.Instance.HideText();
-
 			cameraShake.MinTrauma = 0;
 		}
 	}

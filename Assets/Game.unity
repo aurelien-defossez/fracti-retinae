@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 384710110}
   - component: {fileID: 384710111}
   - component: {fileID: 384710112}
+  - component: {fileID: 384710113}
   m_Layer: 10
   m_Name: Screens
   m_TagString: Untagged
@@ -537,10 +538,11 @@ MonoBehaviour:
   - {fileID: 384316573}
   - {fileID: 1929661371}
   shatterEase:
-    duration: 4
+    duration: 2.5
     ease: 0
   cameraShake: {fileID: 384710112}
   shatterText: Your soul is broken
+  shatterSound: {fileID: 384710113}
 --- !u!114 &384710112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +560,102 @@ MonoBehaviour:
   translationalForce: 0.1
   rotationalForce: 5
   frequency: 20
+--- !u!82 &384710113
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384710109}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -563812526998140635, guid: 0a3280e51a681964986fa9a966fd62d3, type: 2}
+  m_audioClip: {fileID: 8300000, guid: fe3e6958befa45e44842629a06f77bf5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &387362021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,7 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a5021e7416c0444ae13924eae317c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HotkeysEnabled: 1
+  HotkeysEnabled: 0
   DisableLevelEnd: 0
   NoClip: 0
   MuteMusic: 0
