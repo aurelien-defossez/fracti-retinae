@@ -29,6 +29,7 @@ namespace FractiRetinae
 			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLoad);
 			ScreenLayout.Instance.Setup(cameraCount);
 			MusicManager.Instance.OnLevelStart();
+			MadameNature.Instance.OnLevelStart();
 			PlayerController.Instance.Controls.Player.Enable();
 		}
 
@@ -36,6 +37,7 @@ namespace FractiRetinae
 		{
 			EnableGlyphs(true);
 			MusicManager.Instance.OnGoalFound();
+			MadameNature.Instance.OnGoalFound();
 		}
 
 		private void EnableGlyphs(bool enabled)
