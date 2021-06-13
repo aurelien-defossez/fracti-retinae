@@ -13,7 +13,6 @@ namespace FractiRetinae
 
 		public float MaximalGlyphDistance => maximalGlyphDistance;
 		public Level CurrentLevel => levels[levelIndex];
-		public MusicManager musicManager;
 
 		private Level[] levels;
 		private int levelIndex;
@@ -42,8 +41,6 @@ namespace FractiRetinae
 			levelIndex = index;
 			CurrentLevel.Load();
 			PlayerController.Instance.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
-
-			musicManager.OnLevelStart();
 		}
 
 		public void LoadNextLevel() => LoadLevel(levelIndex < levels.Length - 1 ? levelIndex + 1 : 0);
