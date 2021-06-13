@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4851429, g: 0.23297876, b: 0.28353387, a: 1}
+  m_IndirectSpecularColor: {r: 0.4849143, g: 0.23278505, b: 0.28350747, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -999,6 +999,11 @@ MonoBehaviour:
   ambiance2Skybox: {fileID: 2100000, guid: 71f60a29f96091448a6be26145fcdae4, type: 2}
   ambiance1FogColor: {r: 0.97647065, g: 0.5568628, b: 0.3921569, a: 1}
   ambiance2FogColor: {r: 0.53333336, g: 0.85098046, b: 0.9176471, a: 1}
+  mainLight: {fileID: 705507994}
+  targetIntensity: 100
+  intensityEase:
+    duration: 3
+    ease: 1
 --- !u!1001 &1341626815
 PrefabInstance:
   m_ObjectHideFlags: 0
