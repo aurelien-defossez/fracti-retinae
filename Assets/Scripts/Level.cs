@@ -62,7 +62,8 @@ namespace FractiRetinae
 		{
 			while (gameObject.activeSelf)
 			{
-				if (glyphs.All(g => g.CenterDistance <= LevelLoader.Instance.MaximalGlyphDistance))
+				if (!Cheater.Instance.DisableLevelEnd
+				 && glyphs.All(g => g.CenterDistance <= LevelLoader.Instance.MaximalGlyphDistance))
 				{
 					PlayerController.Instance.Controls.Player.Disable();
 					yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
