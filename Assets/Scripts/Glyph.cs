@@ -8,8 +8,6 @@ namespace FractiRetinae
 {
 	public class Glyph : MonoBehaviour
 	{
-		private static readonly Vector2 SCREEN_CENTER = new Vector2(0.5f, 0.5f);
-
 		[SerializeField] private float glowStartDistance;
 		[SerializeField] private bool traceGlyphVisibility;
 		[SerializeField] private AudioSource resonanceSound;
@@ -59,7 +57,7 @@ namespace FractiRetinae
 				if (hit.collider.gameObject == gameObject)
 				{
 					IsVisible = true;
-					CenterDistance = 2 * Vector2.Distance(SCREEN_CENTER, viewCamera.WorldToViewportPoint(transform.position));
+					CenterDistance = 2 * Mathf.Abs(viewCamera.WorldToViewportPoint(transform.position).x - 0.5f);
 					NormalDifference = 180 - Vector3.Angle(hit.normal, ray.direction);
 
 					if (traceGlyphVisibility)
