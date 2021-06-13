@@ -12,6 +12,7 @@ namespace FractiRetinae
 		[SerializeField, Min(0)] private float activationRotation;
 		[SerializeField] private Transform lever;
 		[SerializeField] private EaseDefinition animationEase;
+		[SerializeField] private AudioSource switchSound;
 
 		private bool isLeft;
 		private Coroutine switchRoutine;
@@ -31,6 +32,11 @@ namespace FractiRetinae
 			foreach (SlidingPlatform platform in platforms)
 			{
 				platform.Switch();
+			}
+
+			if (switchSound != null)
+			{
+				switchSound.Play();
 			}
 		}
 
