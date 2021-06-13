@@ -45,31 +45,36 @@ namespace FractiRetinae
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-
-			Controls.Player.Enable();
 		}
 
 		protected void Update()
 		{
-			// Read input
-			Vector2 lookDirection = Controls.Player.Look.ReadValue<Vector2>().CapMagnitude(lookSpeedCap);
-			Vector2 movementDirection = Controls.Player.Move.ReadValue<Vector2>();
+			if (Controls.Player.enabled)
+			{
+				// Read input
+				Vector2 lookDirection = Controls.Player.Look.ReadValue<Vector2>().CapMagnitude(lookSpeedCap);
+				Vector2 movementDirection = Controls.Player.Move.ReadValue<Vector2>();
 
-			// Look Horizontal
-			transform.Rotate(Vector3.up, lookDirection.x * xSensitivity * Time.deltaTime);
+				// Look Horizontal
+				transform.Rotate(Vector3.up, lookDirection.x * xSensitivity * Time.deltaTime);
 
-			// Look Vertical
-			float verticalRotation = cameraContainer.eulerAngles.x - lookDirection.y * ySensitivity * Time.deltaTime;
-			verticalRotation = (verticalRotation + 360) % 360;
-			verticalRotation = verticalRotation < 180 ? verticalRotation : verticalRotation - 360;
-			verticalRotation = Mathf.Clamp(verticalRotation, -lookUpCap, lookDownCap);
-			cameraContainer.eulerAngles = cameraContainer.eulerAngles.WithX(verticalRotation);
+				// Look Vertical
+				float verticalRotation = cameraContainer.eulerAngles.x - lookDirection.y * ySensitivity * Time.deltaTime;
+				verticalRotation = (verticalRotation + 360) % 360;
+				verticalRotation = verticalRotation < 180 ? verticalRotation : verticalRotation - 360;
+				verticalRotation = Mathf.Clamp(verticalRotation, -lookUpCap, lookDownCap);
+				cameraContainer.eulerAngles = cameraContainer.eulerAngles.WithX(verticalRotation);
 
-			// Movement
-			CharacterController.Move(transform.localRotation * new Vector3(movementDirection.x, Physics.gravity.y, movementDirection.y)
-				* walkSpeed
-				* Time.deltaTime
-			);
+				// Movement
+				CharacterController.Move(transform.localRotation * new Vector3(movementDirection.x, Physics.gravity.y, movementDirection.y)
+					* walkSpeed
+					* Time.deltaTime
+				);
+			}
+			else
+			{
+				CharacterController.Move(Vector3.zero);
+			}
 		}
 
 		public void TeleportPlayer(Vector3 position, Quaternion rotation)
@@ -77,10 +82,19 @@ namespace FractiRetinae
 			CharacterController.enabled = false;
 			transform.position = position;
 			transform.rotation = rotation;
+			cameraContainer.localRotation = Quaternion.identity;
 			CharacterController.enabled = true;
 		}
 
 		public int GetCameraIndexFromLayer(int layer) => Convert.ToInt32(LayerMask.LayerToName(layer).Last().ToString());
+
+		public IEnumerator LookAt(Vector3 target, EaseDefinition ease)
+		{
+			Vector3 direction = target - HeadPosition;
+			Quaternion toRotation = Quaternion.LookRotation(direction);
+
+			yield return Auto.Interpolate(transform.localRotation, toRotation, ease, r => transform.rotation = r);
+		}
 
 		private void OnInteract(InputAction.CallbackContext context) => StartCoroutine(InteractCore());
 

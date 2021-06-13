@@ -252,6 +252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraCount: 3
   startPosition: {fileID: 1470959994122569473}
+  lookAtEase:
+    duration: 2
+    ease: 2
 --- !u!1 &3740602495255670727
 GameObject:
   m_ObjectHideFlags: 0

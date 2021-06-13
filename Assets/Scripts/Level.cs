@@ -11,6 +11,7 @@ namespace FractiRetinae
 	{
 		[SerializeField, Range(1, 9)] private int cameraCount = 2;
 		[SerializeField] private Transform startPosition;
+		[SerializeField] private EaseDefinition lookAtEase;
 
 		public int CameraCount => cameraCount;
 		public Transform Start => startPosition;
@@ -28,6 +29,7 @@ namespace FractiRetinae
 			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLoad);
 			ScreenLayout.Instance.Setup(cameraCount);
 			MusicManager.Instance.OnLevelStart();
+			PlayerController.Instance.Controls.Player.Enable();
 		}
 
 		public void OnGoalFound()
@@ -62,6 +64,8 @@ namespace FractiRetinae
 			{
 				if (glyphs.All(g => g.CenterDistance <= LevelLoader.Instance.MaximalGlyphDistance))
 				{
+					PlayerController.Instance.Controls.Player.Disable();
+					yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
 					LevelLoader.Instance.LoadNextLevel();
 					break;
 				}

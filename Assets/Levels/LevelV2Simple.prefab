@@ -372,6 +372,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraCount: 2
   startPosition: {fileID: 1217012644948767629}
+  lookAtEase:
+    duration: 2
+    ease: 2
 --- !u!1 &4481522968180829424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,7 +2364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7883273374005468436, guid: c560d555d53624943b4ec25aea1e013a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 7883273374005468436, guid: c560d555d53624943b4ec25aea1e013a, type: 3}
       propertyPath: m_LocalPosition.z
