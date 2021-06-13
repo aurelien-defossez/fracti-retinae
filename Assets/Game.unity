@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f444f9b9587297149922cd88ed042e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximalGlyphDistance: 0.05
+  maximalGlyphDistance: 0.1
   maximalGlyphNormalDifference: 15
   glyphTutorialMessage: Align the glyphs of each soul
 --- !u!1 &111100115
