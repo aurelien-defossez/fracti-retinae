@@ -82,13 +82,17 @@ namespace FractiRetinae
 
 		public int GetCameraIndexFromLayer(int layer) => Convert.ToInt32(LayerMask.LayerToName(layer).Last().ToString());
 
-		private void OnInteract(InputAction.CallbackContext obj) => StartCoroutine(InteractCore());
+		private void OnInteract(InputAction.CallbackContext context) => StartCoroutine(InteractCore());
 
 		private IEnumerator InteractCore()
 		{
 			// Synchronize on the update loop for reasons
 			yield return 0;
+			CastInteractRay();
+		}
 
+		private void CastInteractRay()
+		{
 			Debug.Log($"Raycast from {HeadPosition.ToString(4)} toward {LookDirection}");
 			RaycastHit[] hits = Physics.RaycastAll(LookRay, interactDistance);
 			int defaultLayer = LayerMask.NameToLayer("Default");
@@ -96,11 +100,13 @@ namespace FractiRetinae
 
 			foreach (RaycastHit hit in hits)
 			{
-				// Hit something in all views: stop
+				// Hit something in all views
 				if (hit.collider.gameObject.layer == defaultLayer)
 				{
 					Debug.Log($"Raycast hit {hit.collider.gameObject.name} on all cameras");
-					break;
+
+					// Stop
+					return;
 				}
 				else
 				{
@@ -119,6 +125,9 @@ namespace FractiRetinae
 							if (interactableSwitch != null)
 							{
 								interactableSwitch.Activate();
+
+								// Authorize only one activation per click
+								return;
 							}
 						}
 					}
