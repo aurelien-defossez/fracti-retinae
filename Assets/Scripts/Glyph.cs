@@ -58,7 +58,7 @@ namespace FractiRetinae
 				{
 					IsVisible = true;
 					CenterDistance = 2 * Mathf.Abs(viewCamera.WorldToViewportPoint(transform.position).x - 0.5f);
-					NormalDifference = 180 - Vector3.Angle(hit.normal, ray.direction);
+					NormalDifference = 180 - Vector3.Angle(hit.normal, PlayerController.Instance.LookDirection);
 
 					if (traceGlyphVisibility)
 					{
