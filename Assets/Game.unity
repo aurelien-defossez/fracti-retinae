@@ -928,6 +928,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ambiance1Land: {fileID: 13086905}
   ambiance2Land: {fileID: 1770987263}
+  ambiance1Skybox: {fileID: 2100000, guid: aed657681c6812845bb7736c343b5e9b, type: 2}
+  ambiance2Skybox: {fileID: 2100000, guid: 71f60a29f96091448a6be26145fcdae4, type: 2}
+  ambiance1FogColor: {r: 0.97647065, g: 0.5568628, b: 0.3921569, a: 1}
+  ambiance2FogColor: {r: 0.53333336, g: 0.85098046, b: 0.9176471, a: 1}
 --- !u!1001 &1341626815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1310,6 +1314,7 @@ MonoBehaviour:
   HotkeysEnabled: 1
   EnableGlyphsOnLoad: 0
   DisableLevelEnd: 0
+  NoClip: 1
   MuteMusic: 1
   StartLevel: 1
 --- !u!4 &1645239837
