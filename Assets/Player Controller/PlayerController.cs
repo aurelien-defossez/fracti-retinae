@@ -17,6 +17,7 @@ namespace FractiRetinae
 		[SerializeField, Range(0, 90)] private float lookUpCap = 90;
 		[SerializeField, Min(0)] private float interactDistance = 1;
 		[SerializeField] private Transform cameraContainer;
+		[SerializeField] private LayerMask interactLayerMask;
 
 		public PlayerControls Controls { get; private set; }
 		public CharacterController CharacterController { get; private set; }
@@ -108,7 +109,7 @@ namespace FractiRetinae
 		private void CastInteractRay()
 		{
 			Debug.Log($"Raycast from {HeadPosition.ToString(4)} toward {LookDirection}");
-			RaycastHit[] hits = Physics.RaycastAll(LookRay, interactDistance);
+			RaycastHit[] hits = Physics.RaycastAll(LookRay, interactDistance, interactLayerMask, QueryTriggerInteraction.Collide);
 			int defaultLayer = LayerMask.NameToLayer("Default");
 			bool[] hitDetected = Enumerable.Repeat(false, LevelLoader.Instance.CurrentLevel.CameraCount).ToArray();
 

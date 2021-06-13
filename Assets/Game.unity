@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f444f9b9587297149922cd88ed042e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximalGlyphDistance: 0.1
+  maximalGlyphDistance: 0.05
   maximalGlyphNormalDifference: 15
 --- !u!1 &111100115
 GameObject:
@@ -2023,6 +2023,9 @@ MonoBehaviour:
   lookUpCap: 45
   interactDistance: 6
   cameraContainer: {fileID: 111100116}
+  interactLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
 --- !u!143 &5241267463883992190
 CharacterController:
   m_ObjectHideFlags: 0
