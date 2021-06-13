@@ -608,7 +608,7 @@ MonoBehaviour:
   glyphResonance: 2
   fadeEase:
     duration: 1
-    ease: 2
+    ease: 11
   mixer: {fileID: 24100000, guid: 0a3280e51a681964986fa9a966fd62d3, type: 2}
   explorationSource: {fileID: 1429920867}
 --- !u!4 &733198799
