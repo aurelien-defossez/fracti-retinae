@@ -9,7 +9,6 @@ namespace FractiRetinae
 {
 	public class LevelLoader : MonoBehaviourSingleton<LevelLoader>
 	{
-		[SerializeField, Min(1)] private int startLevel = 1;
 		[SerializeField, Range(0, 1)] private float maximalGlyphDistance;
 
 		public float MaximalGlyphDistance => maximalGlyphDistance;
@@ -26,7 +25,7 @@ namespace FractiRetinae
 
 		protected void Start()
 		{
-			LoadLevel(startLevel - 1);
+			LoadLevel(Cheater.Instance.StartLevel - 1);
 		}
 
 		public void LoadLevel(int index)

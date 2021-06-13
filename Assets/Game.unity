@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f444f9b9587297149922cd88ed042e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLevel: 1
   maximalGlyphDistance: 0.2
   musicManager: {fileID: 733198798}
 --- !u!1 &111100115
@@ -1294,7 +1293,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HotkeysEnabled: 1
-  EnableGlyphsOnLevelLoad: 0
+  EnableGlyphsOnLoad: 0
+  MuteMusic: 0
+  StartLevel: 1
 --- !u!4 &1645239837
 Transform:
   m_ObjectHideFlags: 0

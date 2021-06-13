@@ -24,7 +24,7 @@ namespace FractiRetinae
 		public void Load()
 		{
 			gameObject.SetActive(true);
-			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLevelLoad);
+			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLoad);
 			ScreenLayout.Instance.Setup(cameraCount);
 		}
 
