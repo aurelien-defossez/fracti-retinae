@@ -4760,7 +4760,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 832227b1204291444ad63a1e427884f3, type: 2}
+  - {fileID: 2100000, guid: 67c4e64c58a319146a07758c91833d9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4859,7 +4859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9122400346203688822, guid: dc4d362c0ee5f95a9b2be51608d80412, type: 3}
       propertyPath: m_Name
-      value: Land_Environment_Ambiance1
+      value: Land_Environment_Ambiance1 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc4d362c0ee5f95a9b2be51608d80412, type: 3}
