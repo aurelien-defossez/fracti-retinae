@@ -19,6 +19,7 @@ namespace FractiRetinae
 		[SerializeField] private Color weakColor;
 		[SerializeField] private Color fullColor;
 		[SerializeField] private Material[] decals;
+		[SerializeField] private MeshRenderer[] faces;
 
 		public bool IsVisible { get; private set; } = false;
 		public float CenterDistance { get; private set; } = float.PositiveInfinity;
@@ -32,8 +33,12 @@ namespace FractiRetinae
 			cameraId = PlayerController.Instance.GetCameraIndexFromLayer(gameObject.layer);
 			viewCamera = PlayerController.Instance.Cameras[cameraId - 1];
 
-			decal = decals[cameraId - 1];
-			GetComponentInChildren<MeshRenderer>().material = decal;
+			decal = new Material(decals[cameraId - 1]);
+			decal.color = weakColor;
+			foreach (MeshRenderer face in faces)
+			{
+				face.material = decal;
+			}
 
 			resonanceSound.volume = 0;
 			resonanceSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(1, LevelLoader.Instance.CurrentLevel.CameraCount, cameraId));
@@ -72,6 +77,7 @@ namespace FractiRetinae
 		public void UpdateGlyph()
 		{
 			float relativeDistance = 1 - Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance);
+
 			decal.color = Color.Lerp(weakColor, fullColor, relativeDistance);
 
 			resonanceSound.volume = Mathf.Clamp(relativeDistance,
