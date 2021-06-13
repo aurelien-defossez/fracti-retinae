@@ -13,6 +13,7 @@ namespace FractiRetinae
 		[SerializeField] private Transform startPosition;
 		[SerializeField] private EaseDefinition lookAtEase;
 		[SerializeField] private LayerMask allViewsMask;
+		[SerializeField, Min(0)] private float glyphTutorialMessageDelay = 10;
 
 		public int CameraCount => cameraCount;
 		public Transform Start => startPosition;
@@ -20,6 +21,7 @@ namespace FractiRetinae
 		private Glyph[] glyphs;
 		private bool isSearchingForGlyphs;
 		private int initialCameraCullingMask;
+		private Coroutine tutorialMessageRoutine;
 
 		protected void Awake()
 		{
@@ -35,6 +37,7 @@ namespace FractiRetinae
 			MadameNature.Instance.OnLevelStart();
 			PlayerController.Instance.Controls.Player.Enable();
 			PlayerController.Instance.CameraShake.MinTrauma = 0;
+			TextPrinter.Instance.HideText();
 
 			if (cameraCount == 1)
 			{
@@ -63,6 +66,7 @@ namespace FractiRetinae
 				isSearchingForGlyphs = true;
 				MusicManager.Instance.OnGoalFound();
 				MadameNature.Instance.OnGoalFound();
+				this.RestartCoroutine(ref tutorialMessageRoutine, ShowTutorialMessage());
 
 				foreach (Glyph glyph in glyphs)
 				{
@@ -108,6 +112,8 @@ namespace FractiRetinae
 
 				if (!Cheater.Instance.DisableLevelEnd && activatedGlyphs == glyphs.Length)
 				{
+					this.TryStopCoroutine(ref tutorialMessageRoutine);
+					TextPrinter.Instance.HideText();
 					PlayerController.Instance.Controls.Player.Disable();
 					yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
 					yield return MadameNature.Instance.FadeOut();
@@ -120,6 +126,12 @@ namespace FractiRetinae
 					yield return 0;
 				}
 			}
+		}
+
+		private IEnumerator ShowTutorialMessage()
+		{
+			yield return new WaitForSeconds(glyphTutorialMessageDelay);
+			TextPrinter.Instance.PrintText(LevelLoader.Instance.GlyphTutorialMessage);
 		}
 	}
 }

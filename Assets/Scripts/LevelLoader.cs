@@ -11,9 +11,11 @@ namespace FractiRetinae
 	{
 		[SerializeField, Range(0, 1)] private float maximalGlyphDistance;
 		[SerializeField, Range(0, 90)] private float maximalGlyphNormalDifference;
+		[SerializeField] private string glyphTutorialMessage;
 
 		public float MaximalGlyphDistance => maximalGlyphDistance;
 		public float MaximalGlyphNormalDifference => maximalGlyphNormalDifference;
+		public string GlyphTutorialMessage => glyphTutorialMessage;
 		public Level CurrentLevel => levels[levelIndex];
 
 		private Level[] levels;

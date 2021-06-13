@@ -374,6 +374,10 @@ MonoBehaviour:
   lookAtEase:
     duration: 2
     ease: 2
+  allViewsMask:
+    serializedVersion: 2
+    m_Bits: 0
+  glyphTutorialMessageDelay: 15
 --- !u!1 &4481522968180829424
 GameObject:
   m_ObjectHideFlags: 0
