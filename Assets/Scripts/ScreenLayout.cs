@@ -11,6 +11,7 @@ namespace FractiRetinae
 		[SerializeField] private MeshRenderer[] screens;
 		[SerializeField] private EaseDefinition shatterEase;
 		[SerializeField] private CameraShake cameraShake;
+		[SerializeField] private string shatterText;
 
 		private float xLeft, xRight, yTop, yBottom;
 
@@ -56,12 +57,16 @@ namespace FractiRetinae
 
 			cameraShake.MinTrauma = 1;
 
+			TextPrinter.Instance.PrintText(shatterText);
+
 			// Move apart
 			yield return Auto.Interpolate(0, xRight, shatterEase, x =>
 			{
 				screens[0].transform.localPosition = new Vector3(-x, 0, 0);
 				screens[1].transform.localPosition = new Vector3(x, 0, 0);
 			});
+
+			TextPrinter.Instance.HideText();
 
 			cameraShake.MinTrauma = 0;
 		}
