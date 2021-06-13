@@ -13,11 +13,13 @@ namespace FractiRetinae
 		[SerializeField, Range(0, 1)] private float maximalGlyphDistance;
 		[SerializeField, Range(0, 90)] private float maximalGlyphNormalDifference;
 		[SerializeField] private string glyphTutorialMessage;
+		[SerializeField] private string endMessage;
 
 		public float MaximalGlyphDistance => maximalGlyphDistance;
 		public float MaximalGlyphNormalDifference => maximalGlyphNormalDifference;
 		public string GlyphTutorialMessage => glyphTutorialMessage;
 		public Level CurrentLevel => levels[levelIndex];
+		public bool HasMoreLevels => levelIndex < levels.Length - 1;
 
 		private Level[] levels;
 		private int levelIndex;
@@ -50,14 +52,24 @@ namespace FractiRetinae
 
 		public void LoadNextLevel()
 		{
-			if (levelIndex < levels.Length - 1)
+			if (HasMoreLevels)
 			{
 				LoadLevel(levelIndex + 1);
 			}
 			else
 			{
-				SceneManager.LoadScene("Title");
+				StartCoroutine(ShowEndText());
 			}
+		}
+
+		private IEnumerator ShowEndText()
+		{
+			TextPrinter.Instance.PrintText(endMessage, true);
+
+			yield return MusicManager.Instance.FadeMusicCore();
+			yield return new WaitForSeconds(4);
+
+			SceneManager.LoadScene("Title");
 		}
 	}
 }

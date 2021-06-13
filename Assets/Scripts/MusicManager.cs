@@ -48,7 +48,18 @@ namespace FractiRetinae
 		{
 			mixer.GetFloat(GLYPHS, out float initialVolume);
 			yield return Auto.Interpolate(initialVolume, -80, glyphFadeEase, v => mixer.SetFloat(GLYPHS, v));
-			mixer.SetFloat(GLYPHS, initialVolume);
+
+			if (LevelLoader.Instance.HasMoreLevels)
+			{
+				mixer.SetFloat(GLYPHS, initialVolume);
+			}
+		}
+
+		public void FadeMusic() => StartCoroutine(FadeMusicCore());
+
+		public IEnumerator FadeMusicCore()
+		{
+			yield return Auto.Interpolate(1f, 0f, 2, EaseType.Linear, v => explorationSource.volume = v);
 		}
 	}
 }

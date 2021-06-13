@@ -21,9 +21,15 @@ namespace FractiRetinae
 			textbox.color = textbox.color.WithAlpha(0);
 		}
 
-		public void PrintText(string text)
+		public void PrintText(string text, bool black = false)
 		{
 			textbox.text = text;
+
+			if (black)
+			{
+				textbox.color = Color.black.WithAlpha(0);
+			}
+
 			this.RestartCoroutine(ref fadeRoutine, FadeTo(1, fadeIn));
 		}
 
