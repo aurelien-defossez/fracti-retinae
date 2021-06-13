@@ -12,11 +12,14 @@ namespace FractiRetinae
 		[SerializeField, Range(1, 9)] private int cameraCount = 2;
 		[SerializeField] private Transform startPosition;
 		[SerializeField] private EaseDefinition lookAtEase;
+		[SerializeField] private LayerMask allViewsMask;
 
 		public int CameraCount => cameraCount;
 		public Transform Start => startPosition;
 
 		private Glyph[] glyphs;
+		private bool isSearchingForGlyphs;
+		private int initialCameraCullingMask;
 
 		protected void Awake()
 		{
@@ -25,12 +28,23 @@ namespace FractiRetinae
 
 		public void Load()
 		{
+			isSearchingForGlyphs = false;
 			gameObject.SetActive(true);
-			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLoad);
 			ScreenLayout.Instance.Setup(cameraCount);
 			MusicManager.Instance.OnLevelStart();
 			MadameNature.Instance.OnLevelStart();
 			PlayerController.Instance.Controls.Player.Enable();
+
+			if (cameraCount == 1)
+			{
+				initialCameraCullingMask = PlayerController.Instance.Cameras[0].cullingMask;
+				PlayerController.Instance.Cameras[0].cullingMask = allViewsMask;
+			}
+
+			foreach (Glyph glyph in glyphs)
+			{
+				glyph.gameObject.SetActive(false);
+			}
 
 			if (Cheater.Instance.NoClip)
 			{
@@ -43,29 +57,43 @@ namespace FractiRetinae
 
 		public void OnGoalFound()
 		{
-			EnableGlyphs(true);
-			MusicManager.Instance.OnGoalFound();
-			MadameNature.Instance.OnGoalFound();
+			if (!isSearchingForGlyphs)
+			{
+				isSearchingForGlyphs = true;
+				MusicManager.Instance.OnGoalFound();
+				MadameNature.Instance.OnGoalFound();
+
+				foreach (Glyph glyph in glyphs)
+				{
+					glyph.ShowGlyph();
+				}
+
+				if (enabled)
+				{
+					if (glyphs.Length == 0)
+					{
+						Debug.LogError($"There are no glyphs in this level, can't be finished.");
+					}
+					else
+					{
+						StartCoroutine(CheckGlyphDistance());
+					}
+				}
+
+				// First level: Shatter thy soul!
+				if (CameraCount == 1)
+				{
+					PlayerController.Instance.Cameras[0].cullingMask = initialCameraCullingMask;
+					StartCoroutine(ShatterSouls());
+				}
+			}
 		}
 
-		private void EnableGlyphs(bool enabled)
+		private IEnumerator ShatterSouls()
 		{
-			foreach (Glyph glyph in glyphs)
-			{
-				glyph.gameObject.SetActive(enabled);
-			}
-
-			if (enabled)
-			{
-				if (glyphs.Length == 0)
-				{
-					Debug.LogError($"There are no glyphs in this level, can't be finished.");
-				}
-				else
-				{
-					StartCoroutine(CheckGlyphDistance());
-				}
-			}
+			PlayerController.Instance.Controls.Player.Disable();
+			yield return ScreenLayout.Instance.ShatterScreens();
+			PlayerController.Instance.Controls.Player.Enable();
 		}
 
 		private IEnumerator CheckGlyphDistance()

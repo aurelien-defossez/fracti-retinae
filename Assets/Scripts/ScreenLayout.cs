@@ -9,6 +9,7 @@ namespace FractiRetinae
 	public class ScreenLayout : MonoBehaviourSingleton<ScreenLayout>
 	{
 		[SerializeField] private MeshRenderer[] screens;
+		[SerializeField] private EaseDefinition shatterEase;
 
 		private float xLeft, xRight, yTop, yBottom;
 
@@ -33,6 +34,7 @@ namespace FractiRetinae
 			if (screenCount == 1)
 			{
 				screens[0].transform.localPosition = Vector3.zero;
+				screens[1].transform.localPosition = Vector3.zero;
 			}
 			else if (screenCount == 2)
 			{
@@ -45,6 +47,18 @@ namespace FractiRetinae
 				screens[1].transform.localPosition = new Vector3(xRight, yTop, 0);
 				screens[2].transform.localPosition = screenCount == 3 ? new Vector3(0, yBottom, 0) : new Vector3(xLeft, yBottom, 0);
 			}
+		}
+
+		public IEnumerator ShatterScreens()
+		{
+			screens[1].gameObject.SetActive(true);
+
+			// Move apart
+			yield return Auto.Interpolate(0, xRight, shatterEase, x =>
+			{
+				screens[0].transform.localPosition = new Vector3(-x, 0, 0);
+				screens[1].transform.localPosition = new Vector3(x, 0, 0);
+			});
 		}
 	}
 }

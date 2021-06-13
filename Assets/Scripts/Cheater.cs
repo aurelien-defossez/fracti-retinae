@@ -10,7 +10,6 @@ namespace FractiRetinae
 	public class Cheater : MonoBehaviourSingleton<Cheater>
 	{
 		[SerializeField] public bool HotkeysEnabled;
-		[SerializeField] public bool EnableGlyphsOnLoad;
 		[SerializeField] public bool DisableLevelEnd;
 		[SerializeField] public bool NoClip;
 		[SerializeField] public bool MuteMusic;

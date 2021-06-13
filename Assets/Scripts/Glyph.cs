@@ -27,8 +27,10 @@ namespace FractiRetinae
 		private Camera viewCamera;
 		private Material decal;
 
-		protected void OnEnable()
+		public void ShowGlyph()
 		{
+			gameObject.SetActive(true);
+
 			cameraId = PlayerController.Instance.GetCameraIndexFromLayer(gameObject.layer);
 			viewCamera = PlayerController.Instance.Cameras[cameraId - 1];
 
