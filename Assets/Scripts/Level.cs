@@ -34,6 +34,7 @@ namespace FractiRetinae
 			MusicManager.Instance.OnLevelStart();
 			MadameNature.Instance.OnLevelStart();
 			PlayerController.Instance.Controls.Player.Enable();
+			PlayerController.Instance.CameraShake.MinTrauma = 0;
 
 			if (cameraCount == 1)
 			{
@@ -48,7 +49,7 @@ namespace FractiRetinae
 
 			if (Cheater.Instance.NoClip)
 			{
-				foreach(BoxCollider box in GetComponentsInChildren<BoxCollider>().Where(b => !b.isTrigger))
+				foreach (BoxCollider box in GetComponentsInChildren<BoxCollider>().Where(b => !b.isTrigger))
 				{
 					box.enabled = false;
 				}
@@ -100,9 +101,12 @@ namespace FractiRetinae
 		{
 			while (gameObject.activeSelf)
 			{
-				if (!Cheater.Instance.DisableLevelEnd
-				 && glyphs.All(g => g.CenterDistance <= LevelLoader.Instance.MaximalGlyphDistance
-					&& g.NormalDifference <= LevelLoader.Instance.MaximalGlyphNormalDifference))
+				int activatedGlyphs = glyphs.Count(g => g.CenterDistance <= LevelLoader.Instance.MaximalGlyphDistance
+					&& g.NormalDifference <= LevelLoader.Instance.MaximalGlyphNormalDifference);
+
+				PlayerController.Instance.CameraShake.MinTrauma = activatedGlyphs * 1f / glyphs.Length;
+
+				if (!Cheater.Instance.DisableLevelEnd && activatedGlyphs == glyphs.Length)
 				{
 					PlayerController.Instance.Controls.Player.Disable();
 					yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);

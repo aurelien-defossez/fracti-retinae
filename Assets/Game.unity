@@ -270,10 +270,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 963194228}
-  - {fileID: 1385919902}
-  - {fileID: 1948087121}
-  - {fileID: 1236198112}
+  - {fileID: 387362022}
   m_Father: {fileID: 5238820401875761108}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -448,7 +445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384710109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1575176275}
@@ -495,6 +492,58 @@ MonoBehaviour:
   traumaDecreaseRate: 0.3
   translationalForce: 0.1
   rotationalForce: 5
+  frequency: 20
+--- !u!1 &387362021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387362022}
+  - component: {fileID: 387362023}
+  m_Layer: 0
+  m_Name: Shaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &387362022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387362021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 963194228}
+  - {fileID: 1385919902}
+  - {fileID: 1948087121}
+  - {fileID: 1236198112}
+  m_Father: {fileID: 111100116}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &387362023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387362021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c276b614c24f245a2f190bc8e5da8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trauma: 0
+  traumaDecreaseRate: 0.3
+  translationalForce: 0.05
+  rotationalForce: 0
   frequency: 20
 --- !u!82 &498696474 stripped
 AudioSource:
@@ -799,7 +848,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 111100116}
+    m_TransformParent: {fileID: 387362022}
     m_Modifications:
     - target: {fileID: 8952345170089216256, guid: fd7b4e03da396cf479be5edba449a09b, type: 3}
       propertyPath: m_RootOrder
@@ -1183,7 +1232,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 111100116}
+    m_TransformParent: {fileID: 387362022}
     m_Modifications:
     - target: {fileID: 8952345170089216256, guid: fd7b4e03da396cf479be5edba449a09b, type: 3}
       propertyPath: m_RootOrder
@@ -1622,7 +1671,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 111100116}
+    m_TransformParent: {fileID: 387362022}
     m_Modifications:
     - target: {fileID: 8952345170089216256, guid: fd7b4e03da396cf479be5edba449a09b, type: 3}
       propertyPath: m_RootOrder
@@ -2265,7 +2314,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 111100116}
+    m_TransformParent: {fileID: 387362022}
     m_Modifications:
     - target: {fileID: 8952345170089216256, guid: fd7b4e03da396cf479be5edba449a09b, type: 3}
       propertyPath: m_RootOrder

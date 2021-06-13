@@ -23,6 +23,7 @@ namespace FractiRetinae
 		public CharacterController CharacterController { get; private set; }
 		public Rigidbody Rigidbody { get; private set; }
 		public Camera[] Cameras { get; private set; }
+		public CameraShake CameraShake { get; private set; }
 		public int[] Layers { get; private set; }
 
 		public Vector3 HeadPosition => cameraContainer.transform.position;
@@ -36,6 +37,7 @@ namespace FractiRetinae
 			CharacterController = GetComponent<CharacterController>();
 			Rigidbody = GetComponent<Rigidbody>();
 			Cameras = GetComponentsInChildren<Camera>();
+			CameraShake = GetComponentInChildren<CameraShake>();
 			Controls = new PlayerControls();
 			Layers = Enumerable.Range(1, Cameras.Length).Select(i => LayerMask.NameToLayer("Camera" + i)).ToArray();
 

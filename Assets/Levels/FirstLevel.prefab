@@ -638,6 +638,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5936691075374452244}
     m_Modifications:
+    - target: {fileID: 129186698857549893, guid: 682766a1c43635044bf5503cf6b6122d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7514991316261419789, guid: fa75065db71507145ae9a120ea09590f, type: 3}
     - target: {fileID: 3919588577995071456, guid: 682766a1c43635044bf5503cf6b6122d, type: 3}
       propertyPath: m_RootOrder
       value: 8

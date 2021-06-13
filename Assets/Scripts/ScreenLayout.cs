@@ -54,8 +54,7 @@ namespace FractiRetinae
 		{
 			screens[1].gameObject.SetActive(true);
 
-			cameraShake.PauseDecrease = true;
-			cameraShake.AddTrauma(1);
+			cameraShake.MinTrauma = 1;
 
 			// Move apart
 			yield return Auto.Interpolate(0, xRight, shatterEase, x =>
@@ -64,7 +63,7 @@ namespace FractiRetinae
 				screens[1].transform.localPosition = new Vector3(x, 0, 0);
 			});
 
-			cameraShake.PauseDecrease = false;
+			cameraShake.MinTrauma = 0;
 		}
 	}
 }
