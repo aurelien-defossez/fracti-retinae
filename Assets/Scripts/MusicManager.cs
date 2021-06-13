@@ -2,10 +2,17 @@ using UnityEngine;
 
 namespace FractiRetinae
 {
-	public class MusicManager : MonoBehaviour
+	public class MusicManager : MonoBehaviourSingleton<MusicManager>
 	{
 		[SerializeField] private AudioSource explorationSource;
 		[SerializeField] private AudioSource glyphHuntSource;
+
+		protected override void Awake()
+		{
+			base.Awake();
+
+			MuteMusic();
+		}
 
 		public void OnLevelStart()
 		{

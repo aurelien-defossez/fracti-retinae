@@ -14,6 +14,8 @@ namespace FractiRetinae
 
 		protected override void Awake()
 		{
+			base.Awake();
+
 			xLeft = screens[0].transform.localPosition.x;
 			xRight = screens[1].transform.localPosition.x;
 			yTop = screens[0].transform.localPosition.y;

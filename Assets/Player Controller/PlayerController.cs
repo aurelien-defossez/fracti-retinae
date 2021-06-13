@@ -29,6 +29,8 @@ namespace FractiRetinae
 
 		protected override void Awake()
 		{
+			base.Awake();
+
 			CharacterController = GetComponent<CharacterController>();
 			Rigidbody = GetComponent<Rigidbody>();
 			Cameras = GetComponentsInChildren<Camera>();

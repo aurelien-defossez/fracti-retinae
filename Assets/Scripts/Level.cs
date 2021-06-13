@@ -46,6 +46,12 @@ namespace FractiRetinae
 				{
 					StartCoroutine(CheckGlyphDistance());
 				}
+
+				MusicManager.Instance.OnGoalFound();
+			}
+			else
+			{
+				MusicManager.Instance.OnLevelStart();
 			}
 		}
 

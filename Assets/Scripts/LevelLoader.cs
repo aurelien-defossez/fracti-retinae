@@ -20,6 +20,8 @@ namespace FractiRetinae
 
 		protected override void Awake()
 		{
+			base.Awake();
+
 			levels = GetComponentsInChildren<Level>(includeInactive: true);
 		}
 
