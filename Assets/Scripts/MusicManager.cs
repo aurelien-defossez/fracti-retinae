@@ -4,7 +4,6 @@ namespace FractiRetinae
 {
 	public class MusicManager : MonoBehaviour
 	{
-		[SerializeField, Range(0, 1)] private float volume;
 		[SerializeField] private AudioSource explorationSource;
 		[SerializeField] private AudioSource glyphHuntSource;
 
@@ -16,7 +15,7 @@ namespace FractiRetinae
 			}
 			else
 			{
-				explorationSource.volume = volume;
+				explorationSource.volume = 1.0f;
 				glyphHuntSource.volume = 0.0f;
 			}
 		}
@@ -30,7 +29,7 @@ namespace FractiRetinae
 			else
 			{
 				explorationSource.volume = 0.0f;
-				glyphHuntSource.volume = volume;
+				glyphHuntSource.volume = 1.0f;
 			}
 		}
 

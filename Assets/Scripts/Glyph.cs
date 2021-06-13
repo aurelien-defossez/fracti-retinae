@@ -15,8 +15,6 @@ namespace FractiRetinae
 		[SerializeField] private AudioSource resonanceSound;
 		[SerializeField, Range(0, 2)] private float minPitch = 1;
 		[SerializeField, Range(0, 2)] private float maxPitch = 1;
-		[SerializeField, Range(0, 1)] private float minVolume = 0;
-		[SerializeField, Range(0, 1)] private float maxVolume = 1;
 		[SerializeField, Range(0, 10)] private float volumeFadeSpeed = 1;
 		[SerializeField] private Color fullColor;
 
@@ -70,8 +68,7 @@ namespace FractiRetinae
 			float relativeDistance = 1 - Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance);
 			mat.color = Color.Lerp(Color.white, fullColor, relativeDistance);
 
-			resonanceSound.volume = Mathf.Clamp(
-				Mathf.Lerp(minVolume, maxVolume, relativeDistance),
+			resonanceSound.volume = Mathf.Clamp(relativeDistance,
 				resonanceSound.volume - volumeFadeSpeed * Time.deltaTime,
 				resonanceSound.volume + volumeFadeSpeed * Time.deltaTime
 			);
