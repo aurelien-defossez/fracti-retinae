@@ -432,6 +432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 384710110}
   - component: {fileID: 384710111}
+  - component: {fileID: 384710112}
   m_Layer: 10
   m_Name: Screens
   m_TagString: Untagged
@@ -477,6 +478,24 @@ MonoBehaviour:
   shatterEase:
     duration: 4
     ease: 0
+  cameraShake: {fileID: 384710112}
+--- !u!114 &384710112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384710109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c276b614c24f245a2f190bc8e5da8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trauma: 0
+  traumaDecreaseRate: 0.3
+  translationalForce: 0.1
+  rotationalForce: 5
+  frequency: 20
 --- !u!82 &498696474 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 7667810359385975916, guid: 44ca05b78095a0976921f0eebb2a69ff, type: 3}
@@ -1391,7 +1410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HotkeysEnabled: 1
-  EnableGlyphsOnLoad: 0
   DisableLevelEnd: 0
   NoClip: 0
   MuteMusic: 1
