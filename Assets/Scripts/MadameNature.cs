@@ -18,6 +18,7 @@ namespace FractiRetinae
 			ambiance2Land.SetActive(false);
 			RenderSettings.skybox = ambiance1Skybox;
 			RenderSettings.fogColor = ambiance1FogColor;
+			DynamicGI.UpdateEnvironment();
 		}
 
 		public void OnGoalFound()
@@ -26,6 +27,7 @@ namespace FractiRetinae
 			ambiance2Land.SetActive(true);
 			RenderSettings.skybox = ambiance2Skybox;
 			RenderSettings.fogColor = ambiance2FogColor;
+			DynamicGI.UpdateEnvironment();
 		}
 	}
 }
