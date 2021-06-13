@@ -215,6 +215,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 8560440836026489085, guid: ca05c6f1efdd581bead491e4803f6894, type: 3}
+      propertyPath: m_Size.x
+      value: 0.13540807
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560440836026489085, guid: ca05c6f1efdd581bead491e4803f6894, type: 3}
+      propertyPath: m_Center.x
+      value: -0.14976184
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca05c6f1efdd581bead491e4803f6894, type: 3}
 --- !u!4 &1993598516202258503 stripped
