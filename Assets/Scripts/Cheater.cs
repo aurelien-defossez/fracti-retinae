@@ -12,6 +12,7 @@ namespace FractiRetinae
 		[SerializeField] public bool HotkeysEnabled;
 		[SerializeField] public bool EnableGlyphsOnLoad;
 		[SerializeField] public bool DisableLevelEnd;
+		[SerializeField] public bool NoClip;
 		[SerializeField] public bool MuteMusic;
 		[SerializeField, Min(1)] public int StartLevel = 1;
 

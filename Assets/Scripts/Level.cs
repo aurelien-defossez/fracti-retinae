@@ -31,6 +31,14 @@ namespace FractiRetinae
 			MusicManager.Instance.OnLevelStart();
 			MadameNature.Instance.OnLevelStart();
 			PlayerController.Instance.Controls.Player.Enable();
+
+			if (Cheater.Instance.NoClip)
+			{
+				foreach(BoxCollider box in GetComponentsInChildren<BoxCollider>().Where(b => !b.isTrigger))
+				{
+					box.enabled = false;
+				}
+			}
 		}
 
 		public void OnGoalFound()
