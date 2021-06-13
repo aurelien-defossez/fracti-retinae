@@ -111,6 +111,7 @@ namespace FractiRetinae
 					PlayerController.Instance.Controls.Player.Disable();
 					yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
 					yield return MadameNature.Instance.FadeOut();
+					yield return MusicManager.Instance.FadeGlyphsOut();
 					LevelLoader.Instance.LoadNextLevel();
 					break;
 				}

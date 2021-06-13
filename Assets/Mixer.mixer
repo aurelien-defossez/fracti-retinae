@@ -125,10 +125,12 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: a333a866f0124754fb2b53a2da1aa35e
-    name: MusicLowPass
+  - guid: 5a2e58e9d641f0e4883cf7249c1b0e2d
+    name: GlyphsVolume
   - guid: c5f455dabf8b7fa4e824f9354bc583e2
     name: MusicResonance
+  - guid: a333a866f0124754fb2b53a2da1aa35e
+    name: MusicLowPass
   m_AudioMixerGroupViews:
   - guids:
     - 895dea3a9cd3e084ea6a6b5c2b54bb97
