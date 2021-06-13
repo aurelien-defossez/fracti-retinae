@@ -21,18 +21,17 @@ namespace FractiRetinae
 		public PlayerControls Controls { get; private set; }
 		public CharacterController CharacterController { get; private set; }
 		public Rigidbody Rigidbody { get; private set; }
+		public Camera[] Cameras { get; private set; }
 
 		public Vector3 HeadPosition => cameraContainer.transform.position;
-		public Vector3 LookDirection => cameras.First().transform.rotation * Vector3.forward;
+		public Vector3 LookDirection => Cameras.First().transform.rotation * Vector3.forward;
 		public Ray LookRay => new Ray(HeadPosition, LookDirection);
-
-		private Camera[] cameras;
 
 		protected override void Awake()
 		{
 			CharacterController = GetComponent<CharacterController>();
 			Rigidbody = GetComponent<Rigidbody>();
-			cameras = GetComponentsInChildren<Camera>();
+			Cameras = GetComponentsInChildren<Camera>();
 			Controls = new PlayerControls();
 
 			Controls.Player.Interact.performed += OnInteract;
@@ -77,7 +76,7 @@ namespace FractiRetinae
 			CharacterController.enabled = true;
 		}
 
-		public Camera GetCameraFromLayer(int layer) => cameras[Convert.ToInt32(LayerMask.LayerToName(layer).Last().ToString()) - 1];
+		public int GetCameraIndexFromLayer(int layer) => Convert.ToInt32(LayerMask.LayerToName(layer).Last().ToString());
 
 		private void OnInteract(InputAction.CallbackContext obj) => StartCoroutine(InteractCore());
 

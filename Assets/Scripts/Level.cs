@@ -12,6 +12,7 @@ namespace FractiRetinae
 		[SerializeField, Range(1, 9)] private int cameraCount = 2;
 		[SerializeField] private Transform startPosition;
 
+		public int CameraCount => cameraCount;
 		public Transform Start => startPosition;
 
 		private Glyph[] glyphs;

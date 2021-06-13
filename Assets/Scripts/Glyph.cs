@@ -12,19 +12,28 @@ namespace FractiRetinae
 
 		[SerializeField] private float glowStartDistance;
 		[SerializeField] private bool traceGlyphVisibility;
+		[SerializeField] private AudioSource resonanceSound;
+		[SerializeField, Range(0, 2)] private float minPitch = 1;
+		[SerializeField, Range(0, 2)] private float maxPitch = 1;
+		[SerializeField, Range(0, 1)] private float minVolume = 0;
+		[SerializeField, Range(0, 1)] private float maxVolume = 1;
+		[SerializeField, Range(0, 10)] private float volumeFadeSpeed = 1;
+		[SerializeField] private Color fullColor;
 
 		public bool IsVisible { get; private set; } = false;
 		public float CenterDistance { get; private set; } = float.PositiveInfinity;
 
+		private int cameraId;
 		private Camera viewCamera;
 		private Material mat;
-		private Color fullColor;
 
 		protected void OnEnable()
 		{
-			viewCamera = PlayerController.Instance.GetCameraFromLayer(gameObject.layer);
+			cameraId = PlayerController.Instance.GetCameraIndexFromLayer(gameObject.layer);
+			viewCamera = PlayerController.Instance.Cameras[cameraId - 1];
 			mat = GetComponentInChildren<MeshRenderer>().material;
-			fullColor = mat.color;
+			resonanceSound.volume = 0;
+			resonanceSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.InverseLerp(1, LevelLoader.Instance.CurrentLevel.CameraCount, cameraId));
 			UpdateGlyph();
 		}
 
@@ -58,7 +67,20 @@ namespace FractiRetinae
 
 		public void UpdateGlyph()
 		{
-			mat.color = Color.Lerp(fullColor, Color.white, Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance));
+			float relativeDistance = 1 - Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance);
+			mat.color = Color.Lerp(Color.white, fullColor, relativeDistance);
+
+			float before = resonanceSound.volume;
+			resonanceSound.volume = Mathf.Clamp(
+				Mathf.Lerp(minVolume, maxVolume, relativeDistance),
+				resonanceSound.volume - volumeFadeSpeed * Time.deltaTime,
+				resonanceSound.volume + volumeFadeSpeed * Time.deltaTime
+			);
+			Debug.Log($"d={relativeDistance}, " +
+				$"Vol={resonanceSound.volume}, " +
+				$"bounds={before - volumeFadeSpeed * Time.deltaTime}/{before + volumeFadeSpeed * Time.deltaTime}, " +
+				$"target={Mathf.Lerp(minVolume, maxVolume, relativeDistance)}, " +
+				$"final={resonanceSound.volume}");
 		}
 	}
 }
