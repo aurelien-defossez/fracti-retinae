@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace FractiRetinae
 {
@@ -47,6 +48,16 @@ namespace FractiRetinae
 			PlayerController.Instance.TeleportPlayer(CurrentLevel.Start.position, CurrentLevel.Start.rotation);
 		}
 
-		public void LoadNextLevel() => LoadLevel(levelIndex < levels.Length - 1 ? levelIndex + 1 : 0);
+		public void LoadNextLevel()
+		{
+			if (levelIndex < levels.Length - 1)
+			{
+				LoadLevel(levelIndex + 1);
+			}
+			else
+			{
+				SceneManager.LoadScene("Title");
+			}
+		}
 	}
 }
