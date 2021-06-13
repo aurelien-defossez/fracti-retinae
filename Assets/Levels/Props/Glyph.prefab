@@ -148,10 +148,8 @@ MonoBehaviour:
   minPitch: 0.8
   maxPitch: 1.2
   volumeFadeSpeed: 1
-  weakColor: {r: 1, g: 1, b: 1, a: 0}
+  weakColor: {r: 1, g: 1, b: 1, a: 0.2509804}
   fullColor: {r: 0.9984272, g: 1, b: 0.6839622, a: 1}
-  minEmission: 0
-  maxEmission: 0
   decals:
   - {fileID: 2100000, guid: 763b906b26fabc54b8e48e095142adc5, type: 2}
   - {fileID: 2100000, guid: 0207629c51a6873409d090d22b0515bf, type: 2}

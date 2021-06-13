@@ -22,6 +22,7 @@ namespace FractiRetinae
 		public CharacterController CharacterController { get; private set; }
 		public Rigidbody Rigidbody { get; private set; }
 		public Camera[] Cameras { get; private set; }
+		public int[] Layers { get; private set; }
 
 		public Vector3 HeadPosition => cameraContainer.transform.position;
 		public Vector3 LookDirection => Cameras.First().transform.rotation * Vector3.forward;
@@ -35,10 +36,11 @@ namespace FractiRetinae
 			Rigidbody = GetComponent<Rigidbody>();
 			Cameras = GetComponentsInChildren<Camera>();
 			Controls = new PlayerControls();
+			Layers = Enumerable.Range(1, Cameras.Length).Select(i => LayerMask.NameToLayer("Camera" + i)).ToArray();
 
 			Controls.Player.Interact.performed += OnInteract;
 		}
-		 
+
 		protected void Start()
 		{
 			Cursor.lockState = CursorLockMode.Locked;
@@ -88,14 +90,38 @@ namespace FractiRetinae
 			yield return 0;
 
 			Debug.Log($"Raycast from {HeadPosition.ToString(4)} toward {LookDirection}");
-			if (Physics.Raycast(LookRay, out RaycastHit hit, interactDistance))
-			{
-				Debug.Log($"Raycast hit {hit.collider.gameObject.name}");
-				Switch interactableSwitch = hit.collider.GetComponent<Switch>();
+			RaycastHit[] hits = Physics.RaycastAll(LookRay, interactDistance);
+			int defaultLayer = LayerMask.NameToLayer("Default");
+			bool[] hitDetected = Enumerable.Repeat(false, LevelLoader.Instance.CurrentLevel.CameraCount).ToArray();
 
-				if (interactableSwitch != null)
+			foreach (RaycastHit hit in hits)
+			{
+				// Hit something in all views: stop
+				if (hit.collider.gameObject.layer == defaultLayer)
 				{
-					interactableSwitch.Activate();
+					Debug.Log($"Raycast hit {hit.collider.gameObject.name} on all cameras");
+					break;
+				}
+				else
+				{
+					for (int i = 0; i < hitDetected.Length; i++)
+					{
+						// New hit on view #i
+						if (!hitDetected[i] && hit.collider.gameObject.layer == Layers[i])
+						{
+							Debug.Log($"Raycast hit {hit.collider.gameObject.name} on camera {i + 1}");
+
+							// Prevent next hits
+							hitDetected[i] = true;
+
+							// Activate switch if any
+							Switch interactableSwitch = hit.collider.GetComponent<Switch>();
+							if (interactableSwitch != null)
+							{
+								interactableSwitch.Activate();
+							}
+						}
+					}
 				}
 			}
 		}
