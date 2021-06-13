@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8490013607494374860}
   - component: {fileID: 4791071278672927337}
   - component: {fileID: 7321087970599022243}
-  - component: {fileID: 8591286671886532505}
+  - component: {fileID: 2182394004421990144}
   m_Layer: 0
   m_Name: Land_Environment
   m_TagString: Untagged
@@ -83,8 +83,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8591286671886532505
-BoxCollider:
+--- !u!64 &2182394004421990144
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,6 +93,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 108.88983, y: 63.60937, z: 108.18856}
-  m_Center: {x: -0.022079468, y: -31.804686, z: -0.7584305}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6046061591050921919, guid: f47c4e836f9b40846833c6e771d8453c, type: 3}
