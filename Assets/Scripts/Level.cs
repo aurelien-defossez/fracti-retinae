@@ -27,11 +27,13 @@ namespace FractiRetinae
 			gameObject.SetActive(true);
 			EnableGlyphs(Cheater.Instance.EnableGlyphsOnLoad);
 			ScreenLayout.Instance.Setup(cameraCount);
+			MusicManager.Instance.OnLevelStart();
 		}
 
 		public void OnGoalFound()
 		{
 			EnableGlyphs(true);
+			MusicManager.Instance.OnGoalFound();
 		}
 
 		private void EnableGlyphs(bool enabled)

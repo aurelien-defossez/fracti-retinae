@@ -601,6 +601,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b66a477f11eebd4aacba3d15ae62c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explorationLowPass: 22000
+  glyphLowPass: 2000
+  explorationResonance: 1
+  glyphResonance: 2
+  fadeEase:
+    duration: 1
+    ease: 2
+  mixer: {fileID: 24100000, guid: 0a3280e51a681964986fa9a966fd62d3, type: 2}
   explorationSource: {fileID: 1429920867}
 --- !u!4 &733198799
 Transform:
@@ -1033,7 +1041,7 @@ GameObject:
   - component: {fileID: 1429920866}
   - component: {fileID: 1429920867}
   m_Layer: 0
-  m_Name: ExplorationMusic
+  m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
