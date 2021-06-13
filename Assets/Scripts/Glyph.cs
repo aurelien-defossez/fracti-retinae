@@ -70,17 +70,11 @@ namespace FractiRetinae
 			float relativeDistance = 1 - Mathf.InverseLerp(LevelLoader.Instance.MaximalGlyphDistance, 1, CenterDistance);
 			mat.color = Color.Lerp(Color.white, fullColor, relativeDistance);
 
-			float before = resonanceSound.volume;
 			resonanceSound.volume = Mathf.Clamp(
 				Mathf.Lerp(minVolume, maxVolume, relativeDistance),
 				resonanceSound.volume - volumeFadeSpeed * Time.deltaTime,
 				resonanceSound.volume + volumeFadeSpeed * Time.deltaTime
 			);
-			Debug.Log($"d={relativeDistance}, " +
-				$"Vol={resonanceSound.volume}, " +
-				$"bounds={before - volumeFadeSpeed * Time.deltaTime}/{before + volumeFadeSpeed * Time.deltaTime}, " +
-				$"target={Mathf.Lerp(minVolume, maxVolume, relativeDistance)}, " +
-				$"final={resonanceSound.volume}");
 		}
 	}
 }
