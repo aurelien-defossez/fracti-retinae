@@ -1001,7 +1001,10 @@ MonoBehaviour:
   ambiance2FogColor: {r: 0.53333336, g: 0.85098046, b: 0.9176471, a: 1}
   mainLight: {fileID: 705507994}
   targetIntensity: 100
-  intensityEase:
+  fadeInEase:
+    duration: 1
+    ease: 0
+  fadeOutEase:
     duration: 3
     ease: 1
 --- !u!1001 &1341626815

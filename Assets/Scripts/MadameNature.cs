@@ -13,7 +13,7 @@ namespace FractiRetinae
 		[SerializeField] private Color ambiance1FogColor, ambiance2FogColor;
 		[SerializeField] private Light mainLight;
 		[SerializeField] private float targetIntensity;
-		[SerializeField] private EaseDefinition intensityEase;
+		[SerializeField] private EaseDefinition fadeInEase, fadeOutEase;
 
 		private float startIntensity;
 
@@ -32,6 +32,8 @@ namespace FractiRetinae
 			RenderSettings.skybox = ambiance1Skybox;
 			RenderSettings.fogColor = ambiance1FogColor;
 			DynamicGI.UpdateEnvironment();
+
+			StartCoroutine(FadeIn());
 		}
 
 		public void OnGoalFound()
@@ -43,9 +45,7 @@ namespace FractiRetinae
 			DynamicGI.UpdateEnvironment();
 		}
 
-		public IEnumerator FlashIntensity()
-		{
-			yield return Auto.Interpolate(startIntensity, targetIntensity, intensityEase, i => mainLight.intensity = i);
-		}
+		public IEnumerator FadeIn() => Auto.Interpolate(targetIntensity, startIntensity, fadeInEase, i => mainLight.intensity = i);
+		public IEnumerator FadeOut() => Auto.Interpolate(startIntensity, targetIntensity, fadeOutEase, i => mainLight.intensity = i);
 	}
 }

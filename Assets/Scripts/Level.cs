@@ -78,7 +78,7 @@ namespace FractiRetinae
 				{
 					PlayerController.Instance.Controls.Player.Disable();
 					yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
-					yield return MadameNature.Instance.FlashIntensity();
+					yield return MadameNature.Instance.FadeOut();
 					LevelLoader.Instance.LoadNextLevel();
 					break;
 				}
