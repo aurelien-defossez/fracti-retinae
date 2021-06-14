@@ -20,7 +20,7 @@ Align them in the center of each of the screens to escape the level, and get a l
 Made in 48 hours by the Mr.AAA team:
 * [Manon Halvadjian](https://github.com/ManonHalvadjian), 3D artist
 * [Rémi Papillié](https://github.com/wsmind), Music artist
-* [Aurore Cello](https://github.com/AuroreCello), Music artist
+* [Aurore Mathon](https://github.com/AuroreCello), Music artist
 * [Aurélien Defossez](https://github.com/aurelien-defossez), Game designer, Level Designer and Programmer
 * [Adrian Gaudebert](https://github.com/adngdb), Level designer and Producer
 
