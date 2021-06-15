@@ -59,7 +59,8 @@ namespace FractiRetinae
 			}
 		}
 
-		public IEnumerator OnGoalFound() { 
+		public IEnumerator OnGoalFound()
+		{
 			if (!isSearchingForGlyphs)
 			{
 				isSearchingForGlyphs = true;
@@ -135,6 +136,11 @@ namespace FractiRetinae
 			if (!LevelLoader.Instance.HasMoreLevels)
 			{
 				yield return ScreenLayout.Instance.RejoinScreens();
+
+				foreach (Camera camera in PlayerController.Instance.Cameras)
+				{
+					camera.cullingMask = allViewsMask;
+				}
 			}
 
 			yield return MadameNature.Instance.FadeOut();

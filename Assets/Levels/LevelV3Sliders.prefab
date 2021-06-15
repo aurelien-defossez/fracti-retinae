@@ -261,7 +261,7 @@ MonoBehaviour:
     ease: 2
   allViewsMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   glyphTutorialMessageDelay: 120
 --- !u!1 &3740602495255670727
 GameObject:
