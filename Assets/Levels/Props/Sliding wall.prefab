@@ -52,6 +52,11 @@ MonoBehaviour:
     ease: 2
   startMoved: 0
   switchSound: {fileID: 614183031792153703}
+  emissionColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.11198902, a: 1}
+  - {r: 0.12918329, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.9807997, b: 0, a: 1}
 --- !u!82 &614183031792153703
 AudioSource:
   m_ObjectHideFlags: 0

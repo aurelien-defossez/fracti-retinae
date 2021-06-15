@@ -13,6 +13,7 @@ namespace FractiRetinae
 		[SerializeField] private EaseDefinition animationEase;
 		[SerializeField] private bool startMoved;
 		[SerializeField] private AudioSource switchSound;
+		[SerializeField] private Color[] emissionColors;
 
 		public bool IsMoved { get; private set; }
 
@@ -32,6 +33,9 @@ namespace FractiRetinae
 			{
 				SlideToTargetPosition();
 			}
+
+			GetComponentInChildren<MeshRenderer>().material.SetColor("_EmissionColor",
+				emissionColors[PlayerController.Instance.GetCameraIndexFromLayer(gameObject.layer) - 1]);
 		}
 
 		public void Switch()
