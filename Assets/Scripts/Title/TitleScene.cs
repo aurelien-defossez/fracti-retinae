@@ -9,6 +9,13 @@ namespace FractiRetinae.Title
 {
 	public class TitleScene : MonoBehaviour
 	{
+		[SerializeField] GameObject quitButton;
+
+		protected void Awake()
+		{
+			quitButton.SetActive(Application.platform != RuntimePlatform.WebGLPlayer);
+		}
+
 		public void PlayGame() => SceneManager.LoadScene("Game");
 
 		public void QuitGame()
