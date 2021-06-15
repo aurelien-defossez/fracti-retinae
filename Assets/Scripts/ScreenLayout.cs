@@ -9,7 +9,7 @@ namespace FractiRetinae
 	public class ScreenLayout : MonoBehaviourSingleton<ScreenLayout>
 	{
 		[SerializeField] private MeshRenderer[] screens;
-		[SerializeField] private EaseDefinition shatterEase;
+		[SerializeField] private EaseDefinition shatterEase, rejoinEase;
 		[SerializeField] private CameraShake cameraShake;
 		[SerializeField] private string shatterText;
 		[SerializeField] private AudioSource shatterSound;
@@ -85,6 +85,21 @@ namespace FractiRetinae
 
 			TextPrinter.Instance.HideText();
 			cameraShake.MinTrauma = 0;
+		}
+
+		public IEnumerator RejoinScreens()
+		{
+			cameraShake.MinTrauma = 0.5f;
+
+			yield return Auto.Interpolate(0, 1, rejoinEase, t =>
+			{
+				screens[0].transform.localPosition = Vector3.Lerp(new Vector3(xLeft, yTop, 0), Vector3.zero, t);
+				screens[1].transform.localPosition = Vector3.Lerp(new Vector3(xRight, yTop, 0), Vector3.zero, t);
+				screens[2].transform.localPosition = Vector3.Lerp(new Vector3(0, yBottom, 0), Vector3.zero, t);
+			});
+
+			cameraShake.MinTrauma = 0;
+			TextPrinter.Instance.PrintText("Your soul is rejoined");
 		}
 	}
 }

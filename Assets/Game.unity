@@ -541,6 +541,9 @@ MonoBehaviour:
   shatterEase:
     duration: 2.5
     ease: 0
+  rejoinEase:
+    duration: 2.5
+    ease: 0
   cameraShake: {fileID: 384710112}
   shatterText: Your soul is broken
   shatterSound: {fileID: 384710113}

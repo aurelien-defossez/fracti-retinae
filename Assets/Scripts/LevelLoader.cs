@@ -13,7 +13,6 @@ namespace FractiRetinae
 		[SerializeField, Range(0, 1)] private float maximalGlyphDistance;
 		[SerializeField, Range(0, 90)] private float maximalGlyphNormalDifference;
 		[SerializeField] private string glyphTutorialMessage;
-		[SerializeField] private string endMessage;
 
 		public float MaximalGlyphDistance => maximalGlyphDistance;
 		public float MaximalGlyphNormalDifference => maximalGlyphNormalDifference;
@@ -64,8 +63,6 @@ namespace FractiRetinae
 
 		private IEnumerator ShowEndText()
 		{
-			TextPrinter.Instance.PrintText(endMessage, true);
-
 			yield return MusicManager.Instance.FadeMusicCore();
 			yield return new WaitForSeconds(4);
 
