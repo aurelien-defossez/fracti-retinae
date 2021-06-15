@@ -265,12 +265,12 @@ GameObject:
   - component: {fileID: 8314401679738040199}
   - component: {fileID: 2692962802963446016}
   m_Layer: 0
-  m_Name: LevelV2SlidingWallTuto
+  m_Name: 3 - Sliding Monstruosities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8314401679738040199
 Transform:
   m_ObjectHideFlags: 0

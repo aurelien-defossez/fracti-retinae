@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 8258436504904960210}
   - component: {fileID: 1235501432405214488}
   m_Layer: 0
-  m_Name: LevelV1
+  m_Name: Bonus - Harder Than Hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

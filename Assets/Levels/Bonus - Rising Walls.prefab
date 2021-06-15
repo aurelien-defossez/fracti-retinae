@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 2623632190227438488}
   - component: {fileID: 767479639035686484}
   m_Layer: 0
-  m_Name: Level4
+  m_Name: Bonus - Rising Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -368,12 +368,12 @@ GameObject:
   - component: {fileID: 200947424424703635}
   - component: {fileID: 7442555131475383855}
   m_Layer: 0
-  m_Name: LevelV2Simple
+  m_Name: 2 - Forget Thy Mind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &200947424424703635
 Transform:
   m_ObjectHideFlags: 0

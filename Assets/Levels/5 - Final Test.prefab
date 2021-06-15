@@ -217,12 +217,12 @@ GameObject:
   - component: {fileID: 5241483571859979674}
   - component: {fileID: 5458125441085606441}
   m_Layer: 0
-  m_Name: LevelV3Sliders
+  m_Name: 5 - Final Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5241483571859979674
 Transform:
   m_ObjectHideFlags: 0

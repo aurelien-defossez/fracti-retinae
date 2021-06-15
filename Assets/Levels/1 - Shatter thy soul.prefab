@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 5936691075374452244}
   - component: {fileID: 6364390067709319432}
   m_Layer: 0
-  m_Name: FirstLevel
+  m_Name: 1 - Shatter thy soul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

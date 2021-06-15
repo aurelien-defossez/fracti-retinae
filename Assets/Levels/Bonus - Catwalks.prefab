@@ -1770,7 +1770,7 @@ GameObject:
   - component: {fileID: 6529218393323484433}
   - component: {fileID: 8382272789090287837}
   m_Layer: 0
-  m_Name: Level3
+  m_Name: Bonus - Catwalks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
