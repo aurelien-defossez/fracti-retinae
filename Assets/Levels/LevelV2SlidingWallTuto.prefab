@@ -304,8 +304,8 @@ MonoBehaviour:
   cameraCount: 2
   startPosition: {fileID: 5646011423746501521}
   lookAtEase:
-    duration: 0
-    ease: 0
+    duration: 2
+    ease: 2
   allViewsMask:
     serializedVersion: 2
     m_Bits: 0

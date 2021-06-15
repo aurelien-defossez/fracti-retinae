@@ -263,12 +263,12 @@ MonoBehaviour:
   cameraCount: 2
   startPosition: {fileID: 1438036228157100486}
   lookAtEase:
-    duration: 0
-    ease: 0
+    duration: 2
+    ease: 2
   allViewsMask:
     serializedVersion: 2
     m_Bits: 0
-  glyphTutorialMessageDelay: 10
+  glyphTutorialMessageDelay: 60
 --- !u!1 &7874436146095892677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3461066055160730641, guid: 7970d6d4100251b4ab85a4eca77793d7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.740002
+      value: -10.7
       objectReference: {fileID: 0}
     - target: {fileID: 3461066055160730641, guid: 7970d6d4100251b4ab85a4eca77793d7, type: 3}
       propertyPath: m_LocalRotation.w

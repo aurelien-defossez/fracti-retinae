@@ -59,15 +59,22 @@ namespace FractiRetinae
 			}
 		}
 
-		public void OnGoalFound()
-		{
+		public IEnumerator OnGoalFound() { 
 			if (!isSearchingForGlyphs)
 			{
 				isSearchingForGlyphs = true;
+
+				// Recenter view
+				PlayerController.Instance.Controls.Player.Disable();
+				yield return PlayerController.Instance.LookAt(GetComponentInChildren<LevelGoal>().transform.position, lookAtEase, onlyHorizontal: true);
+				PlayerController.Instance.Controls.Player.Enable();
+
+				// Change scenery
 				MusicManager.Instance.OnGoalFound();
 				MadameNature.Instance.OnGoalFound();
 				this.RestartCoroutine(ref tutorialMessageRoutine, ShowTutorialMessage());
 
+				// Show glyphs
 				foreach (Glyph glyph in glyphs)
 				{
 					glyph.ShowGlyph();
@@ -89,16 +96,11 @@ namespace FractiRetinae
 				if (CameraCount == 1)
 				{
 					PlayerController.Instance.Cameras[0].cullingMask = initialCameraCullingMask;
-					StartCoroutine(ShatterSouls());
+					PlayerController.Instance.Controls.Player.Disable();
+					yield return ScreenLayout.Instance.ShatterScreens();
+					PlayerController.Instance.Controls.Player.Enable();
 				}
 			}
-		}
-
-		private IEnumerator ShatterSouls()
-		{
-			PlayerController.Instance.Controls.Player.Disable();
-			yield return ScreenLayout.Instance.ShatterScreens();
-			PlayerController.Instance.Controls.Player.Enable();
 		}
 
 		private IEnumerator CheckGlyphDistance()

@@ -91,9 +91,14 @@ namespace FractiRetinae
 
 		public int GetCameraIndexFromLayer(int layer) => Convert.ToInt32(LayerMask.LayerToName(layer).Last().ToString());
 
-		public IEnumerator LookAt(Vector3 target, EaseDefinition ease)
+		public IEnumerator LookAt(Vector3 target, EaseDefinition ease, bool onlyHorizontal = false)
 		{
 			Vector3 direction = target - HeadPosition;
+			if (onlyHorizontal)
+			{
+				direction = direction.WithY(0);
+			}
+
 			Quaternion toRotation = Quaternion.LookRotation(direction);
 
 			yield return Auto.Interpolate(transform.localRotation, toRotation, ease, r => transform.rotation = r);
