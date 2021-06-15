@@ -26,6 +26,8 @@ namespace FractiRetinae
 		public CameraShake CameraShake { get; private set; }
 		public int[] Layers { get; private set; }
 
+		public float SensitivitySetting { get; set; } = 0.5f;
+
 		public Vector3 HeadPosition => cameraContainer.transform.position;
 		public Vector3 LookDirection => Cameras.First().transform.rotation * Vector3.forward;
 		public Ray LookRay => new Ray(HeadPosition, LookDirection);
@@ -44,12 +46,6 @@ namespace FractiRetinae
 			Controls.Player.Interact.performed += OnInteract;
 		}
 
-		protected void Start()
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
-
 		protected void Update()
 		{
 			if (Controls.Player.enabled)
@@ -59,10 +55,10 @@ namespace FractiRetinae
 				Vector2 movementDirection = Controls.Player.Move.ReadValue<Vector2>();
 
 				// Look Horizontal
-				transform.Rotate(Vector3.up, lookDirection.x * xSensitivity * Time.deltaTime);
+				transform.Rotate(Vector3.up, lookDirection.x * xSensitivity * SensitivitySetting * Time.deltaTime);
 
 				// Look Vertical
-				float verticalRotation = cameraContainer.eulerAngles.x - lookDirection.y * ySensitivity * Time.deltaTime;
+				float verticalRotation = cameraContainer.eulerAngles.x - lookDirection.y * ySensitivity * SensitivitySetting * Time.deltaTime;
 				verticalRotation = (verticalRotation + 360) % 360;
 				verticalRotation = verticalRotation < 180 ? verticalRotation : verticalRotation - 360;
 				verticalRotation = Mathf.Clamp(verticalRotation, -lookUpCap, lookDownCap);
@@ -104,7 +100,13 @@ namespace FractiRetinae
 			yield return Auto.Interpolate(transform.localRotation, toRotation, ease, r => transform.rotation = r);
 		}
 
-		private void OnInteract(InputAction.CallbackContext context) => StartCoroutine(InteractCore());
+		private void OnInteract(InputAction.CallbackContext context)
+		{
+			if (!PauseMenu.Instance.IsPaused)
+			{
+				StartCoroutine(InteractCore());
+			}
+		}
 
 		private IEnumerator InteractCore()
 		{
