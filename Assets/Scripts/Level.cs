@@ -114,13 +114,7 @@ namespace FractiRetinae
 
 				if (!Cheater.Instance.DisableLevelEnd && activatedGlyphs == glyphs.Length)
 				{
-					this.TryStopCoroutine(ref tutorialMessageRoutine);
-					TextPrinter.Instance.HideText();
-					PlayerController.Instance.Controls.Player.Disable();
-					yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
-					yield return MadameNature.Instance.FadeOut();
-					yield return MusicManager.Instance.FadeGlyphsOut();
-					LevelLoader.Instance.LoadNextLevel();
+					yield return EndLevel();
 					break;
 				}
 				else
@@ -128,6 +122,24 @@ namespace FractiRetinae
 					yield return 0;
 				}
 			}
+		}
+
+		public IEnumerator EndLevel()
+		{
+			PlayerController.Instance.CameraShake.MinTrauma = 1;
+			this.TryStopCoroutine(ref tutorialMessageRoutine);
+			TextPrinter.Instance.HideText();
+			PlayerController.Instance.Controls.Player.Disable();
+			yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
+
+			if (!LevelLoader.Instance.HasMoreLevels)
+			{
+				yield return ScreenLayout.Instance.RejoinScreens();
+			}
+
+			yield return MadameNature.Instance.FadeOut();
+			yield return MusicManager.Instance.FadeGlyphsOut();
+			LevelLoader.Instance.LoadNextLevel();
 		}
 
 		private IEnumerator ShowTutorialMessage()

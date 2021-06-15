@@ -836,6 +836,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ShowGlyphs",
+                    "type": "Button",
+                    "id": "8f631636-da67-4e77-b437-89ea5eb79779",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "EndLevel",
+                    "type": "Button",
+                    "id": "3e92702c-2977-4f85-a822-7cf79302a588",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -847,6 +863,28 @@
                     "processors": "",
                     "groups": "Game",
                     "action": "NextLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0a8b374-cd2a-4749-afeb-4f2a9858a04d",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowGlyphs",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38d0b948-eb28-4b77-abc8-7ba8b827f3c3",
+                    "path": "<Keyboard>/f3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EndLevel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -849,6 +849,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShowGlyphs"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f631636-da67-4e77-b437-89ea5eb79779"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""EndLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e92702c-2977-4f85-a822-7cf79302a588"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -860,6 +876,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Game"",
                     ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0a8b374-cd2a-4749-afeb-4f2a9858a04d"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowGlyphs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38d0b948-eb28-4b77-abc8-7ba8b827f3c3"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EndLevel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -894,6 +932,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // Cheater
         m_Cheater = asset.FindActionMap("Cheater", throwIfNotFound: true);
         m_Cheater_NextLevel = m_Cheater.FindAction("NextLevel", throwIfNotFound: true);
+        m_Cheater_ShowGlyphs = m_Cheater.FindAction("ShowGlyphs", throwIfNotFound: true);
+        m_Cheater_EndLevel = m_Cheater.FindAction("EndLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1098,11 +1138,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Cheater;
     private ICheaterActions m_CheaterActionsCallbackInterface;
     private readonly InputAction m_Cheater_NextLevel;
+    private readonly InputAction m_Cheater_ShowGlyphs;
+    private readonly InputAction m_Cheater_EndLevel;
     public struct CheaterActions
     {
         private @PlayerControls m_Wrapper;
         public CheaterActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @NextLevel => m_Wrapper.m_Cheater_NextLevel;
+        public InputAction @ShowGlyphs => m_Wrapper.m_Cheater_ShowGlyphs;
+        public InputAction @EndLevel => m_Wrapper.m_Cheater_EndLevel;
         public InputActionMap Get() { return m_Wrapper.m_Cheater; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1115,6 +1159,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @NextLevel.started -= m_Wrapper.m_CheaterActionsCallbackInterface.OnNextLevel;
                 @NextLevel.performed -= m_Wrapper.m_CheaterActionsCallbackInterface.OnNextLevel;
                 @NextLevel.canceled -= m_Wrapper.m_CheaterActionsCallbackInterface.OnNextLevel;
+                @ShowGlyphs.started -= m_Wrapper.m_CheaterActionsCallbackInterface.OnShowGlyphs;
+                @ShowGlyphs.performed -= m_Wrapper.m_CheaterActionsCallbackInterface.OnShowGlyphs;
+                @ShowGlyphs.canceled -= m_Wrapper.m_CheaterActionsCallbackInterface.OnShowGlyphs;
+                @EndLevel.started -= m_Wrapper.m_CheaterActionsCallbackInterface.OnEndLevel;
+                @EndLevel.performed -= m_Wrapper.m_CheaterActionsCallbackInterface.OnEndLevel;
+                @EndLevel.canceled -= m_Wrapper.m_CheaterActionsCallbackInterface.OnEndLevel;
             }
             m_Wrapper.m_CheaterActionsCallbackInterface = instance;
             if (instance != null)
@@ -1122,6 +1172,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @NextLevel.started += instance.OnNextLevel;
                 @NextLevel.performed += instance.OnNextLevel;
                 @NextLevel.canceled += instance.OnNextLevel;
+                @ShowGlyphs.started += instance.OnShowGlyphs;
+                @ShowGlyphs.performed += instance.OnShowGlyphs;
+                @ShowGlyphs.canceled += instance.OnShowGlyphs;
+                @EndLevel.started += instance.OnEndLevel;
+                @EndLevel.performed += instance.OnEndLevel;
+                @EndLevel.canceled += instance.OnEndLevel;
             }
         }
     }
@@ -1157,5 +1213,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface ICheaterActions
     {
         void OnNextLevel(InputAction.CallbackContext context);
+        void OnShowGlyphs(InputAction.CallbackContext context);
+        void OnEndLevel(InputAction.CallbackContext context);
     }
 }
