@@ -13,6 +13,7 @@ namespace FractiRetinae
 		[SerializeField] private CameraShake cameraShake;
 		[SerializeField] private string shatterText;
 		[SerializeField] private AudioSource shatterSound;
+		[SerializeField] private float flickerDuration;
 
 		private float xLeft, xRight, yTop, yBottom;
 
@@ -60,11 +61,26 @@ namespace FractiRetinae
 			TextPrinter.Instance.PrintText(shatterText);
 			shatterSound.Play();
 
+			//Flicker
+			float flickerStartTime = Time.time;
+			while (Time.time-flickerStartTime < flickerDuration)
+			{
+				screens[0].transform.localPosition = screens[0].transform.localPosition.WithZ(-0.1f);
+				screens[1].transform.localPosition = screens[1].transform.localPosition.WithZ(0.1f);
+				yield return 0;
+				screens[0].transform.localPosition = screens[0].transform.localPosition.WithZ(0.1f);
+				screens[1].transform.localPosition = screens[1].transform.localPosition.WithZ(-0.1f);
+				yield return 0;
+			}
+
+			screens[0].transform.localPosition = screens[0].transform.localPosition.WithZ(0);
+			screens[1].transform.localPosition = screens[1].transform.localPosition.WithZ(0);
+
 			// Move apart
 			yield return Auto.Interpolate(0, xRight, shatterEase, x =>
 			{
-				screens[0].transform.localPosition = new Vector3(-x, 0, 0);
-				screens[1].transform.localPosition = new Vector3(x, 0, 0);
+				screens[0].transform.localPosition = screens[0].transform.localPosition.WithX(-x);
+				screens[1].transform.localPosition = screens[1].transform.localPosition.WithX(x);
 			});
 
 			TextPrinter.Instance.HideText();

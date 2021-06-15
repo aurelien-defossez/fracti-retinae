@@ -544,6 +544,7 @@ MonoBehaviour:
   cameraShake: {fileID: 384710112}
   shatterText: Your soul is broken
   shatterSound: {fileID: 384710113}
+  flickerDuration: 0
 --- !u!114 &384710112
 MonoBehaviour:
   m_ObjectHideFlags: 0
