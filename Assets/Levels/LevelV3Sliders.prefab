@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5241483571859979674
 Transform:
   m_ObjectHideFlags: 0
@@ -256,7 +256,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraCount: 3
   startPosition: {fileID: 1470959994122569473}
-  lookAtEase:
+  lookAtCthuluhuEase:
+    duration: 1
+    ease: 2
+  lookAtGlyphsEase:
     duration: 2
     ease: 2
   allViewsMask:

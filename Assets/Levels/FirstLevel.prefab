@@ -160,7 +160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraCount: 1
   startPosition: {fileID: 2279387468884377181}
-  lookAtEase:
+  lookAtCthuluhuEase:
+    duration: 1.5
+    ease: 2
+  lookAtGlyphsEase:
     duration: 2
     ease: 2
   allViewsMask:

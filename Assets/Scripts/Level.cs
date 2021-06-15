@@ -11,7 +11,8 @@ namespace FractiRetinae
 	{
 		[SerializeField, Range(1, 9)] private int cameraCount = 2;
 		[SerializeField] private Transform startPosition;
-		[SerializeField] private EaseDefinition lookAtEase;
+		[SerializeField] private EaseDefinition lookAtCthuluhuEase;
+		[SerializeField] private EaseDefinition lookAtGlyphsEase;
 		[SerializeField] private LayerMask allViewsMask;
 		[SerializeField, Min(0)] private float glyphTutorialMessageDelay = 10;
 
@@ -67,7 +68,7 @@ namespace FractiRetinae
 
 				// Recenter view
 				PlayerController.Instance.Controls.Player.Disable();
-				yield return PlayerController.Instance.LookAt(GetComponentInChildren<LevelGoal>().transform.position, lookAtEase, onlyHorizontal: true);
+				yield return PlayerController.Instance.LookAt(GetComponentInChildren<LevelGoal>().transform.position, lookAtCthuluhuEase, onlyHorizontal: true);
 				PlayerController.Instance.Controls.Player.Enable();
 
 				// Change scenery
@@ -131,7 +132,7 @@ namespace FractiRetinae
 			this.TryStopCoroutine(ref tutorialMessageRoutine);
 			TextPrinter.Instance.HideText();
 			PlayerController.Instance.Controls.Player.Disable();
-			yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtEase);
+			yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtGlyphsEase);
 
 			if (!LevelLoader.Instance.HasMoreLevels)
 			{
