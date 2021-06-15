@@ -292,7 +292,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4791350586141047659, guid: edc2a2aec5d83c49ba20c0113d682bed, type: 3}
       propertyPath: m_Name
-      value: LevelHiddenLever
+      value: 4 - Impossible Levers
       objectReference: {fileID: 0}
     - target: {fileID: 4791350586141047659, guid: edc2a2aec5d83c49ba20c0113d682bed, type: 3}
       propertyPath: m_IsActive
@@ -358,7 +358,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2485711824238423927, guid: 3faab8ab1a07845ada7e1a299e5ad4f9, type: 3}
       propertyPath: m_Name
-      value: LevelV2SlidingWallTuto
+      value: 3 - Sliding Monstruosities
       objectReference: {fileID: 0}
     - target: {fileID: 2485711824238423927, guid: 3faab8ab1a07845ada7e1a299e5ad4f9, type: 3}
       propertyPath: m_IsActive
@@ -927,7 +927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4451581154374168748, guid: a490cb598903495cab70cc32325fb515, type: 3}
       propertyPath: m_Name
-      value: LevelV2Simple
+      value: 2 - Forget Thy Mind
       objectReference: {fileID: 0}
     - target: {fileID: 4451581154374168748, guid: a490cb598903495cab70cc32325fb515, type: 3}
       propertyPath: m_IsActive
@@ -2072,7 +2072,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3723299840619973503, guid: 5bdf8d3b270cc281b8b1768797ad02cf, type: 3}
       propertyPath: m_Name
-      value: LevelV3Sliders
+      value: 5 - Final Test
       objectReference: {fileID: 0}
     - target: {fileID: 3723299840619973503, guid: 5bdf8d3b270cc281b8b1768797ad02cf, type: 3}
       propertyPath: m_IsActive
@@ -2598,7 +2598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5936691075374452245, guid: 03fc572db0e9d8b4b9f6ae6ec082d0ac, type: 3}
       propertyPath: m_Name
-      value: FirstLevel
+      value: 1 - Shatter thy soul
       objectReference: {fileID: 0}
     - target: {fileID: 5936691075374452245, guid: 03fc572db0e9d8b4b9f6ae6ec082d0ac, type: 3}
       propertyPath: m_IsActive
