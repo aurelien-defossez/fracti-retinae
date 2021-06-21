@@ -95,7 +95,7 @@ namespace FractiRetinae
 				}
 
 				// First level: Shatter thy soul!
-				if (CameraCount == 1)
+				if (cameraCount == 1)
 				{
 					PlayerController.Instance.Cameras[0].cullingMask = initialCameraCullingMask;
 					PlayerController.Instance.Controls.Player.Disable();
