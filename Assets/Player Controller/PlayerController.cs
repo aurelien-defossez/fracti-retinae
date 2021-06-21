@@ -51,8 +51,14 @@ namespace FractiRetinae
 			if (Controls.Player.enabled)
 			{
 				// Read input
-				Vector2 lookDirection = Controls.Player.Look.ReadValue<Vector2>().CapMagnitude(lookSpeedCap);
+				Vector2 lookDirection = Controls.Player.Look.ReadValue<Vector2>();
 				Vector2 movementDirection = Controls.Player.Move.ReadValue<Vector2>();
+
+				// Ignore if too high
+				if (lookDirection.magnitude > lookSpeedCap)
+				{
+					lookDirection = Vector2.zero;
+				}
 
 				// Look Horizontal
 				transform.Rotate(Vector3.up, lookDirection.x * xSensitivity * SensitivitySetting * Time.deltaTime);
