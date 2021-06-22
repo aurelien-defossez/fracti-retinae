@@ -12,7 +12,7 @@ namespace FractiRetinae
 		[SerializeField] private EaseDefinition shatterEase, rejoinEase;
 		[SerializeField] private CameraShake cameraShake;
 		[SerializeField] private string shatterText;
-		[SerializeField] private AudioSource shatterSound;
+		[SerializeField] private AudioSource shatterSound, shatterSoundLight;
 		[SerializeField] private float flickerDuration;
 
 		private float xLeft, xRight, yTop, yBottom;
@@ -52,6 +52,8 @@ namespace FractiRetinae
 				screens[2].transform.localPosition = screenCount == 3 ? new Vector3(0, yBottom, 0) : new Vector3(xLeft, yBottom, 0);
 			}
 		}
+
+		public void PlayerLightShatterSound() => shatterSoundLight.Play();
 
 		public IEnumerator ShatterScreens()
 		{

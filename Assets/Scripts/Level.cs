@@ -66,6 +66,11 @@ namespace FractiRetinae
 			{
 				isSearchingForGlyphs = true;
 
+				if (cameraCount > 1)
+				{
+					ScreenLayout.Instance.PlayerLightShatterSound();
+				}
+
 				// Recenter view
 				PlayerController.Instance.Controls.Player.Disable();
 				yield return PlayerController.Instance.LookAt(GetComponentInChildren<LevelGoal>().transform.position, lookAtCthuluhuEase, onlyHorizontal: true);
