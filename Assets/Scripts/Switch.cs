@@ -11,11 +11,18 @@ namespace FractiRetinae
 		[SerializeField] private SlidingPlatform[] platforms;
 		[SerializeField, Min(0)] private float activationRotation;
 		[SerializeField] private Transform lever;
+		[SerializeField] private MeshRenderer leverMesh;
 		[SerializeField] private EaseDefinition animationEase;
 		[SerializeField] private AudioSource switchSound;
+		[SerializeField] private Color[] emissionColors;
 
 		private bool isLeft;
 		private Coroutine switchRoutine;
+
+		protected void Start()
+		{
+			leverMesh.material.SetColor("_EmissionColor", emissionColors[PlayerController.Instance.GetCameraIndexFromLayer(gameObject.layer) - 1]);
+		}
 
 		protected void OnEnable()
 		{

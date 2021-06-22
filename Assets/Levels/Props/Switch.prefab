@@ -50,10 +50,16 @@ MonoBehaviour:
   platforms: []
   activationRotation: 20
   lever: {fileID: 7682392630140494171}
+  leverMesh: {fileID: 2040317324713151134}
   animationEase:
     duration: 0.5
     ease: 2
   switchSound: {fileID: 4587025276273719815}
+  emissionColors:
+  - {r: 0.70199996, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.7, b: 0.07960779, a: 1}
+  - {r: 0.09058819, g: 0, b: 0.7, a: 1}
+  - {r: 0.7, g: 0.6862745, b: 0, a: 1}
 --- !u!65 &4808721641002242512
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -230,7 +236,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 11a585a210461a94d998ceef73a0b06c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b86e6f471b789cf49ad91eab477f4853, type: 2}
+      objectReference: {fileID: 2100000, guid: e097ff05448e7284e8cc4d0134851e6a, type: 2}
     - target: {fileID: -7370156802671013846, guid: 11a585a210461a94d998ceef73a0b06c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -265,5 +271,10 @@ Transform:
 --- !u!4 &7682392630140494171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7370156802671013846, guid: 11a585a210461a94d998ceef73a0b06c, type: 3}
+  m_PrefabInstance: {fileID: 8298627830318100849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2040317324713151134 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8032750206264916975, guid: 11a585a210461a94d998ceef73a0b06c, type: 3}
   m_PrefabInstance: {fileID: 8298627830318100849}
   m_PrefabAsset: {fileID: 0}
