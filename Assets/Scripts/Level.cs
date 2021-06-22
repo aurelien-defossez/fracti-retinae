@@ -132,7 +132,11 @@ namespace FractiRetinae
 			this.TryStopCoroutine(ref tutorialMessageRoutine);
 			TextPrinter.Instance.HideText();
 			PlayerController.Instance.Controls.Player.Disable();
-			yield return PlayerController.Instance.LookAt(glyphs.First().transform.position, lookAtGlyphsEase);
+			
+			yield return PlayerController.Instance.LookAt(
+				glyphs.OrderBy(g => Vector2.Distance(PlayerController.Instance.transform.position, g.transform.position)).Last().transform.position,
+				lookAtGlyphsEase
+			);
 
 			if (!LevelLoader.Instance.HasMoreLevels)
 			{
