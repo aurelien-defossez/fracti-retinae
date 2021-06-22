@@ -12,7 +12,7 @@ namespace FractiRetinae
 		[SerializeField] private EaseDefinition shatterEase, rejoinEase;
 		[SerializeField] private CameraShake cameraShake;
 		[SerializeField] private string shatterText;
-		[SerializeField] private AudioSource shatterSound, shatterSoundLight;
+		[SerializeField] private AudioSource shatterSound, shatterSoundLight, rejoinSound;
 		[SerializeField] private float flickerDuration;
 
 		private float xLeft, xRight, yTop, yBottom;
@@ -92,6 +92,7 @@ namespace FractiRetinae
 		public IEnumerator RejoinScreens()
 		{
 			cameraShake.MinTrauma = 0.5f;
+			rejoinSound.Play();
 
 			yield return Auto.Interpolate(0, 1, rejoinEase, t =>
 			{
