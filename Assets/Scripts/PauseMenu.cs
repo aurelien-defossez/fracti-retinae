@@ -15,11 +15,27 @@ namespace FractiRetinae
 
 		public bool IsPaused { get; set; }
 
+		private bool isFullScreen;
+
 		protected void Start()
 		{
 			PlayerController.Instance.Controls.Player.Pause.performed += OnPause;
 
+			isFullScreen = Screen.fullScreen;
+
 			UpdatePauseStatus();
+		}
+
+		protected void Update()
+		{
+			if (isFullScreen != Screen.fullScreen)
+			{
+				// Open the pause when going out of full screen mode. Similarly, close it when going full screen.
+				// This is useful for Chrome, where Escape quits full screen mode without bubbling the key event to us.
+				IsPaused = !Screen.fullScreen;
+				isFullScreen = Screen.fullScreen;
+				UpdatePauseStatus();
+			}
 		}
 
 		private void OnPause(InputAction.CallbackContext context)
