@@ -14,6 +14,9 @@ namespace FractiRetinae.Title
 		protected void Awake()
 		{
 			quitButton.SetActive(Application.platform != RuntimePlatform.WebGLPlayer);
+
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
 		}
 
 		public void PlayGame() => SceneManager.LoadScene("Game");
